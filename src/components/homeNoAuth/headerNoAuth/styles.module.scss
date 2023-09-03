@@ -1,0 +1,50 @@
+@import "../../../../styles/colors.module.scss";
+
+.ctaSection {
+  background-color: $azul;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  padding: 4px 0px;
+}
+
+.imgCta {
+  width: 20px;
+}
+.nav {
+  display: flex;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  margin-top: 20px;
+}
+
+.navBtn {
+  margin: 0px 5px;
+  border-color: transparent;
+  color: $azul;
+  padding-top: 15px;
+
+  &:hover {
+    border-color: $vermelho;
+    color: $vermelho;
+    background-color: transparent;
+  }
+}
+
+@media (max-width: 503px) {
+  .nav {
+    justify-content: center;
+  }
+  .navBtn {
+    margin: 16px 10px;
+    border-color: #0dcaf0;
+    font-size: 14px;
+    padding-top: 6px;
+  }
+}
+
+@media (max-width: 382px) {
+  .ctaSection {
+    text-align: center;
+  }
+}
