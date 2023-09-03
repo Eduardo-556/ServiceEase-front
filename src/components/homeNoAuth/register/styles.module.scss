@@ -1,0 +1,33 @@
+.input {
+  border-color: #0dcaf0;
+  background-color: transparent;
+
+  &::placeholder {
+    color: #778899;
+  }
+
+  &:focus {
+    background-color: transparent;
+    border-color: #0dcaf0;
+    box-shadow: none;
+  }
+}
+.formBtn {
+  display: block;
+  margin: 50px auto 0 auto;
+  border-color: #c32e58;
+  color: #c32e58;
+
+  &:hover {
+    background-color: #c32e58;
+    color: #0dcaf0;
+    border-color: #0dcaf0;
+  }
+}
+
+.inputLanguage {
+  @extend .input;
+}
+
+@media (max-width: 499px) {
+}

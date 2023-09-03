@@ -9,7 +9,7 @@ export const HeaderNoAuth = function () {
   return (
     <>
       <div className={styles.ctaSection}>
-        <p className="text-white">
+        <p className="text-branco">
           Se cadastre e comece a usar nossos serviços!!!
         </p>
       </div>

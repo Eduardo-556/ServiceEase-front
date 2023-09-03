@@ -1,5 +1,5 @@
-import "bootstrap/dist/css/bootstrap.min.css";
 import "./globals.css";
+import "bootstrap/dist/css/bootstrap.min.css";
 import type { Metadata } from "next";
 import { Poppins } from "next/font/google";
 
