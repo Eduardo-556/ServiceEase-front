@@ -1,6 +1,6 @@
 "use client";
 import { Col, Container, Row } from "reactstrap";
-import styles from "./styles.module.scss";
+
 import Image from "next/image";
 export const PresentationSection = function () {
   return (
@@ -17,7 +17,6 @@ export const PresentationSection = function () {
           </Col>
           <Col md>
             <Image
-              className={styles.bannerImg}
               layout="responsive"
               priority={true}
               objectFit="contain"
