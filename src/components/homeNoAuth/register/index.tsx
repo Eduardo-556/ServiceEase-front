@@ -2,15 +2,68 @@
 
 import { Button, Container, Form, FormGroup, Input, Label } from "reactstrap";
 import styles from "./styles.module.scss";
+import { FormEvent, useState } from "react";
+import authService from "@/services/authService";
+import { useRouter } from "next/navigation";
+import ToastComponent from "@/components/common/toast";
 
 export default function RegisterBody() {
+  const router = useRouter();
+  const [toastIsOpen, setToastIsOpen] = useState(false);
+  const [toastMessage, setToastMessage] = useState("");
+  const handleRegister = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
+    const formData = new FormData(event.currentTarget);
+    const firstName = formData.get("firstName")!.toString();
+    const lastName = formData.get("lastName")!.toString();
+    const phone = formData.get("phone")!.toString();
+    const birth = formData.get("birth")!.toString();
+    const email = formData.get("email")!.toString();
+    const password = formData.get("password")!.toString();
+    const confirmPassword = formData.get("confirmPassword")!.toString();
+    const language = formData.get("language")! as "pt-BR" | "en-US";
+
+    const params = {
+      firstName,
+      lastName,
+      phone,
+      birth,
+      email,
+      password,
+      language,
+    };
+
+    if (password !== confirmPassword) {
+      setToastIsOpen(true);
+      setTimeout(() => {
+        setToastIsOpen(false);
+      }, 3000);
+      setToastMessage("As senhas não coincidem!");
+      return;
+    }
+
+    const { data, status } = await authService.register(params);
+
+    if (status == 200) {
+      router.push("/login?registred=true");
+    } else {
+      setToastIsOpen(true);
+      setTimeout(() => {
+        setToastIsOpen(false);
+      }, 3000);
+      setToastMessage(data.message);
+    }
+  };
   return (
     <>
       <Container className="py-5">
         <p className="text-3xl font-bold mb-10 text-center text-azulClaro max-sm:text-2xl">
           Bem-vindo(a) ao ServiceEase!
         </p>
-        <Form className="w-96 p-12 border-solid border-1 border-azulClaro my-0 mx-auto max-sm:w-11/12">
+        <Form
+          onSubmit={handleRegister}
+          className="w-96 p-12 border-solid border-1 border-azulClaro my-0 mx-auto max-sm:w-11/12"
+        >
           <p className="text-center text-azulClaro">
             <strong>Bem-vindo(a) ao ServiceEase!</strong>
           </p>
@@ -97,12 +150,12 @@ export default function RegisterBody() {
             />
           </FormGroup>
           <FormGroup>
-            <Label for="passwordConfirm" className="text-sm font-bold pt-2">
+            <Label for="confirmPassword" className="text-sm font-bold pt-2">
               Confirme sua senha
             </Label>
             <Input
-              id="passwordConfirm"
-              name="passwordConfirm"
+              id="confirmPassword"
+              name="confirmPassword"
               type="password"
               placeholder="Confirme sua senha"
               required
@@ -122,8 +175,8 @@ export default function RegisterBody() {
               required
               className={styles.inputLanguage}
             >
-              <option>Português</option>
-              <option>English</option>
+              <option value="pt-BR">Português</option>
+              <option value="en-US">English</option>
             </Input>
           </FormGroup>
           <Button type="submit" outline className={styles.formBtn}>
@@ -131,6 +184,11 @@ export default function RegisterBody() {
           </Button>
         </Form>
       </Container>
+      <ToastComponent
+        color="bg-danger"
+        isOpen={toastIsOpen}
+        message={toastMessage}
+      />
     </>
   );
 }

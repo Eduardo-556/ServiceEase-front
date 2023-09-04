@@ -1,7 +1,6 @@
 import HeaderGeneric from "@/components/common/headerGeneric";
 import RegisterBody from "@/components/homeNoAuth/register";
 import { Metadata } from "next";
-
 export const metadata: Metadata = {
   title: "ServiceEase | Register",
 };
