@@ -13,7 +13,11 @@ export default function LoginBody() {
   const [toastColor, setToastColor] = useState("");
   const [toastIsOpen, setToastIsOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
-
+  useEffect(() => {
+    if (sessionStorage.getItem("serviceEase-token")) {
+      router.push("/home");
+    }
+  });
   const registerSucess = searchParams.get("registred");
   useEffect(() => {
     if (registerSucess === "true") {

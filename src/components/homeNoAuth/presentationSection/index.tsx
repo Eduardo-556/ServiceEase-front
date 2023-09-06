@@ -17,10 +17,7 @@ export const PresentationSection = function () {
           </Col>
           <Col md>
             <Image
-              layout="responsive"
               priority={true}
-              objectFit="contain"
-              objectPosition="center"
               quality={100}
               placeholder="blur"
               blurDataURL="/banner.svg"

@@ -2,7 +2,7 @@
 
 import { Button, Container, Form, FormGroup, Input, Label } from "reactstrap";
 import styles from "./styles.module.scss";
-import { FormEvent, useState } from "react";
+import { FormEvent, useEffect, useState } from "react";
 import authService from "@/services/authService";
 import { useRouter } from "next/navigation";
 import ToastComponent from "@/components/common/toast";
@@ -11,6 +11,11 @@ export default function RegisterBody() {
   const router = useRouter();
   const [toastIsOpen, setToastIsOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
+  useEffect(() => {
+    if (sessionStorage.getItem("serviceEase-token")) {
+      router.push("/home");
+    }
+  });
   const handleRegister = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault();
     const formData = new FormData(event.currentTarget);
