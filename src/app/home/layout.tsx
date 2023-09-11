@@ -7,12 +7,12 @@ type Props = {
 
 const layout = (props: Props) => {
   return (
-    <div className="flex mx-auto w-full">
-      <div>
+    <main className="flex mx-auto static">
+      <div className="h-screen  fixed">
         <Sidebar />
       </div>
-      <main className="w-full">{props.children}</main>
-    </div>
+      <div className="w-screen ml-14">{props.children}</div>
+    </main>
   );
 };
 
