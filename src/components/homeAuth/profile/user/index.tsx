@@ -66,7 +66,7 @@ const UserForm = function () {
           </p>
         </div>
         <div className="flex justify-center">
-          <p className="text-sm text-slate-500">
+          <p className="text-sm text-slate-500 text-center">
             Membro desde <br />{" "}
             {`${date.getDate()} de ${month} de ${date.getFullYear()}`}
           </p>

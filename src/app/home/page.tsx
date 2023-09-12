@@ -1,10 +1,17 @@
-import { Metadata } from "next";
+"use client";
 
-export const metadata: Metadata = {
-  title: "ServiceEase | Home",
-};
+import { useRouter } from "next/navigation";
+
+import { useEffect } from "react";
 
 export default function Home() {
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!sessionStorage.getItem("serviceEase-token")) {
+      router.push("/login");
+    }
+  });
   return (
     <>
       <div className="bg-branco px-2 py-2 ">
