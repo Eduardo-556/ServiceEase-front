@@ -3,12 +3,18 @@
 import PasswordForm from "@/components/homeAuth/profile/password";
 import UserForm from "@/components/homeAuth/profile/user";
 import { useRouter } from "next/navigation";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Col, Container, Row } from "reactstrap";
 
 export default function Page() {
   const [form, setForm] = useState("userForm");
   const router = useRouter();
+
+  useEffect(() => {
+    if (!sessionStorage.getItem("serviceEase-token")) {
+      router.push("/login");
+    }
+  });
 
   const handleLogout = () => {
     sessionStorage.clear();

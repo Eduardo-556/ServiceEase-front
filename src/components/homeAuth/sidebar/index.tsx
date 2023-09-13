@@ -5,7 +5,6 @@ import {
   ChevronDoubleLeftIcon,
   ChevronDoubleRightIcon,
   ClipboardIcon,
-  EllipsisVerticalIcon,
   HomeIcon,
   UserGroupIcon,
 } from "@heroicons/react/24/outline";
@@ -109,14 +108,14 @@ const Sidebar = () => {
         </ul>
 
         <Link href="/home/profile" className="no-underline">
-          <div className="border-t flex p-1 border-t-azulClaro">
+          <div className="border-t flex p-1 border-t-azulClaro pb-4 justify-center items-center">
             <img src="/user.png" alt="user avatar" className="w-10 h-10" />
             <div
               className={` flex justify-between items-center  overflow-hidden transition-all ${
                 expanded ? "w-30 ml-3" : "w-0"
               }`}
             >
-              <div className="leading-4 p-1">
+              <div className="p-1">
                 <h4 className="font-semibold text-gray-300 text-center text-base">
                   {`${firstName} ${lastName}`}
                 </h4>

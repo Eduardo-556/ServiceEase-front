@@ -1,4 +1,16 @@
+"use client"
+
+import { useRouter } from "next/navigation";
+import { useEffect } from "react";
+
 export default function Page() {
+  const router = useRouter();
+
+  useEffect(() => {
+    if (!sessionStorage.getItem("serviceEase-token")) {
+      router.push("/login");
+    }
+  });
   return (
     <>
       <div className="bg-branco px-6 py-24 sm:py-32 lg:px-8 h-screen lg:pl-72">

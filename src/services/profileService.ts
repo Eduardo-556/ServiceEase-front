@@ -27,7 +27,7 @@ const profileService = {
         console.log(error.response.data.message);
         return error.response;
       });
-    console.log(res.data);
+
     return res.data;
   },
 
