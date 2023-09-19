@@ -72,6 +72,8 @@ export default function Page() {
                         {`${customer.firstName.toUpperCase()} ${customer.lastName.toUpperCase()}`}
                       </p>
                       <div className="text-sm text-gray-500 break-words max-[452px]:text-xs">
+                        <span className="font-bold">Documento: </span>
+                        {customer.nif} <br />
                         <span className="font-bold">Email: </span>
                         {customer.email} <br />
                         <span className="font-bold">Contato: </span>

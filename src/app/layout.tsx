@@ -8,7 +8,7 @@ const poppins = Poppins({ subsets: ["latin"], weight: ["400", "700"] });
 export const metadata: Metadata = {
   title: "ServiceEase | Home",
   description: "Ease for your business",
-  icons: "/favicon.png",
+  icons: "/logopng.png",
 };
 
 export default function RootLayout({

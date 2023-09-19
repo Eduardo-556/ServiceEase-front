@@ -5,6 +5,7 @@ export type CustomerType = {
   id: number;
   firstName: string;
   lastName: string;
+  nif: string;
   email: string;
   phone: string;
   address: string;
@@ -14,12 +15,50 @@ export type CustomerType = {
 type CustomerParams = {
   firstName: string;
   lastName: string;
+  nif: string;
   email: string;
   phone: string;
   address: string;
 };
 
+export type CreateCustomer = {
+  firstName: string;
+  lastName: string;
+  nif: string;
+  email: string;
+  phone: string;
+  address: string;
+  userId: number;
+};
+
 const customerService = {
+  postCreate: async (params: CreateCustomer) => {
+    const token = sessionStorage.getItem("serviceEase-token");
+    const res = await api
+      .post("/customer/create", params, {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+      })
+      .catch((error) => {
+        return error.response;
+      });
+    return res;
+  },
+
+  getAll: async () => {
+    const token = sessionStorage.getItem("serviceEase-token");
+    const { id } = await profileService.fetchCurrent();
+
+    const res = await api.get(`/users/${id}/customer`, {
+      headers: {
+        Authorization: `Bearer ${token}`,
+      },
+    });
+
+    return res.data;
+  },
+
   getSearch: async (name: string) => {
     const token = sessionStorage.getItem("serviceEase-token");
     const { id } = await profileService.fetchCurrent();

@@ -8,6 +8,7 @@ import {
   HomeIcon,
   UserGroupIcon,
 } from "@heroicons/react/24/outline";
+import { BuildingStorefrontIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { useSelectedLayoutSegment } from "next/navigation";
 import { useEffect, useState } from "react";
@@ -107,21 +108,27 @@ const Sidebar = () => {
           ))}
         </ul>
 
-        <Link href="/home/profile" className="no-underline">
-          <div className="border-t flex p-1 border-t-azulClaro pb-4 justify-center items-center">
-            <img src="/user.png" alt="user avatar" className="w-10 h-10" />
-            <div
-              className={` flex justify-between items-center  overflow-hidden transition-all ${
-                expanded ? "w-30 ml-3" : "w-0"
-              }`}
-            >
-              <div className="p-1">
-                <h4 className="font-semibold text-gray-300 text-center text-base">
-                  {`${firstName} ${lastName}`}
-                </h4>
-                <span className="text-xs text-gray-400">{`${email}`}</span>
-              </div>
-            </div>
+        <Link
+          href="/home/profile"
+          className={` ${
+            `/${segment}` === "/profile"
+              ? "bg-gray-800 text-azulClaro border-azulClaro border-2 "
+              : "text-gray-400 hover:text-white hover:bg-gray-700"
+          } group flex  rounded-md  text-sm font-semibold no-underline  items-center justify-center ${
+            expanded ? "px-3 py-3" : "px-0 py-3"
+          }`}
+        >
+          <BuildingStorefrontIcon
+            className={`group-hover:text-azulClaro h-8 w-8 shrink-0 ${
+              `/${segment}` === "/profile" ? "text-azulClaro" : "text-gray-300"
+            }`}
+          />
+          <div
+            className={`overflow-hidden transition-all ${
+              expanded ? "ml-3" : "w-0"
+            }`}
+          >
+            {`${firstName} ${lastName}`}
           </div>
         </Link>
       </nav>

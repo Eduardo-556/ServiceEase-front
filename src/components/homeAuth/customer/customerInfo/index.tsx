@@ -13,6 +13,7 @@ export default function CustomerInfo({ params }: { params: ParamsType }) {
   const [errorMessage, setErrorMessage] = useState("");
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [nif, setNif] = useState("");
   const [phone, setPhone] = useState("");
   const [email, setEmail] = useState("");
   const [address, setAddress] = useState("");
@@ -24,6 +25,7 @@ export default function CustomerInfo({ params }: { params: ParamsType }) {
     customerService.getDetails(customerId).then((customer) => {
       setFirstName(customer.firstName);
       setLastName(customer.lastName);
+      setNif(customer.nif);
       setPhone(customer.phone);
       setEmail(customer.email);
       setAddress(customer.address);
@@ -37,6 +39,7 @@ export default function CustomerInfo({ params }: { params: ParamsType }) {
     const res = await customerService.postUpdate(customerId, {
       firstName,
       lastName,
+      nif,
       email,
       phone,
       address,
@@ -63,7 +66,7 @@ export default function CustomerInfo({ params }: { params: ParamsType }) {
     <>
       <Form
         onSubmit={handleUserUpdate}
-        className="border-solid border-1 max-w-full border-azulClaro p-5 pt-0"
+        className="border-solid border-1 max-w-full border-azulClaro p-5 pt-0 mt-2"
       >
         <div className="flex items-center justify-center gap-2 w-[80%] mt-5 mx-auto uppercase">
           <p className="text-3xl font-bold break-words max-[501px]:text-xl text-center">
@@ -72,7 +75,7 @@ export default function CustomerInfo({ params }: { params: ParamsType }) {
         </div>
         <div className="flex justify-center">
           <p className="text-sm text-slate-500 text-center">
-            Cliente desde <br />{" "}
+            Cliente desde <br />
             {`${date.getDate()} de ${month} de ${date.getFullYear()}`}
           </p>
         </div>
@@ -107,6 +110,22 @@ export default function CustomerInfo({ params }: { params: ParamsType }) {
               value={lastName}
               onChange={(event) => {
                 setLastName(event.target.value);
+              }}
+            />
+          </FormGroup>
+          <FormGroup>
+            <Label for="nif" className="text-sm font-bold">
+              Documento de identidade
+            </Label>
+            <Input
+              name="nif"
+              type="text"
+              id="nif"
+              placeholder="Qual seu último nome?"
+              required
+              value={nif}
+              onChange={(event) => {
+                setNif(event.target.value);
               }}
             />
           </FormGroup>
