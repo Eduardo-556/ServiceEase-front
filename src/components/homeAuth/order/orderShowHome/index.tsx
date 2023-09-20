@@ -1,6 +1,7 @@
 "use client";
 
 import ordersService, { OrderType } from "@/services/ordersService";
+import { ArrowPathIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { useEffect, useState } from "react";
 import { Col, Container, Row } from "reactstrap";
@@ -15,23 +16,29 @@ export default function OrderShowHome() {
 
   useEffect(() => {
     fecthData();
-
-    const intervalId = setInterval(fecthData, 1000);
-
-    return () => clearInterval(intervalId);
   }, []);
 
   return (
     <>
       <Container className="py-5 flex flex-col">
-        <span className="text-center font-bold text-2xl text-azulClaro">
+        <span className="flex items-center justify-center gap-1 text-center font-bold text-2xl text-azulClaro">
           Serviços
+          <button
+            onClick={fecthData}
+            className="bg-azul rounded-full flex justify-center items-center text-sm p-1 hover:bg-red-500"
+          >
+            <ArrowPathIcon className="w-4 h-4" /> Atualizar
+          </button>
         </span>
 
         <Row className="flex max-[630px]:flex-col py-2">
           <Col className="flex flex-col ">
             <span className="text-center font-semibold text-base text-green-500">
-              Iniciados
+              {`Iniciados  (${
+                searchResult?.filter(
+                  (order) => order.serviceStatus === "started"
+                ).length
+              })`}
             </span>
             <ul className="p-0 ml-1 mr-2 max-h-[320px] overflow-y-scroll">
               {searchResult
@@ -104,7 +111,11 @@ export default function OrderShowHome() {
           </Col>
           <Col className="flex flex-col ">
             <span className="text-center font-semibold text-base text-yellow-500">
-              Pausados
+              {`Pausados  (${
+                searchResult?.filter(
+                  (order) => order.serviceStatus === "paused"
+                ).length
+              })`}
             </span>
             <ul className="p-0 ml-1 mr-2 max-h-[320px] overflow-y-scroll">
               {searchResult
@@ -177,7 +188,11 @@ export default function OrderShowHome() {
           </Col>
           <Col className="flex flex-col ">
             <span className="text-center font-semibold text-base text-red-500">
-              Pendente
+              {`Pendente (${
+                searchResult?.filter(
+                  (order) => order.serviceStatus === "pending"
+                ).length
+              })`}
             </span>
             <ul className="p-0 ml-1 mr-2 max-h-[320px] overflow-y-scroll">
               {searchResult
