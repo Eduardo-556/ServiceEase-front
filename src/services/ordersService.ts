@@ -44,6 +44,11 @@ interface TimeParams {
   serviceStatus: string;
 }
 
+type DeleteOrder = {
+  userId: number;
+  serviceId: number;
+};
+
 const ordersService = {
   getSearch: async (name: string) => {
     const token = sessionStorage.getItem("serviceEase-token");
@@ -121,6 +126,21 @@ const ordersService = {
       });
 
     return res;
+  },
+
+  deleteOrder: async (params: DeleteOrder) => {
+    const token = sessionStorage.getItem("serviceEase-token");
+    const res = await api
+      .delete("/service/delete", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        data: params,
+      })
+      .catch((error) => {
+        return error.response;
+      });
+    return res.status;
   },
 };
 

@@ -31,6 +31,11 @@ export type CreateCustomer = {
   userId: number;
 };
 
+type DeleteCustomer = {
+  customerId: string;
+  userId: string;
+};
+
 const customerService = {
   postCreate: async (params: CreateCustomer) => {
     const token = sessionStorage.getItem("serviceEase-token");
@@ -100,6 +105,21 @@ const customerService = {
         headers: {
           Authorization: `Bearer ${token}`,
         },
+      })
+      .catch((error) => {
+        return error.response;
+      });
+    return res.status;
+  },
+
+  deleteCustomer: async (params: DeleteCustomer) => {
+    const token = sessionStorage.getItem("serviceEase-token");
+    const res = await api
+      .delete("/customer/delete", {
+        headers: {
+          Authorization: `Bearer ${token}`,
+        },
+        data: params,
       })
       .catch((error) => {
         return error.response;
