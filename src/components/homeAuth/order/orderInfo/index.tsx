@@ -4,6 +4,7 @@ import { ParamsType } from "@/app/home/servicos/[orderId]/page";
 import ToastComponent from "@/components/common/toast";
 import ordersService from "@/services/ordersService";
 import { useRouter } from "next/navigation";
+import QRCode from "qrcode.react";
 import { FormEvent, useEffect, useState } from "react";
 import { Container, Form, FormGroup, Input, Label } from "reactstrap";
 
@@ -29,8 +30,16 @@ export default function OrderInfo({ params }: { params: ParamsType }) {
   const [customerLastName, setCustomerLastName] = useState("");
   const [customerEmail, setCustomerEmail] = useState("");
   const [customerPhone, setCustomerPhone] = useState("");
+  const [url, setUrl] = useState("");
   const date = new Date(createdAt);
   const month = date.toLocaleDateString("default", { month: "long" });
+
+  useEffect(() => {
+    // Lembrar de trocar para window.location.href
+    const currentUrl = `http://192.168.0.103:3001/home/servicos/${orderId}`;
+    setUrl(currentUrl);
+    console.log(url);
+  }, []);
 
   useEffect(() => {
     ordersService.getDetails(orderId).then((order) => {
@@ -94,6 +103,45 @@ export default function OrderInfo({ params }: { params: ParamsType }) {
             <p className="text-3xl font-bold break-words max-[501px]:text-xl text-center">
               {`${deviceModel}`}
             </p>
+            <p
+              className={`
+                                    ${
+                                      serviceStatus === "pending"
+                                        ? "text-red-500"
+                                        : ""
+                                    }
+                                    ${
+                                      serviceStatus === "started"
+                                        ? "text-green-500"
+                                        : ""
+                                    }
+                                    ${
+                                      serviceStatus === "paused"
+                                        ? "text-yellow-500"
+                                        : ""
+                                    }
+                                    ${
+                                      serviceStatus === "ended"
+                                        ? "text-gray-500"
+                                        : ""
+                                    }
+                                    `}
+            >
+              {(() => {
+                switch (serviceStatus) {
+                  case "pending":
+                    return "Pendente";
+                  case "started":
+                    return "Iniciado";
+                  case "paused":
+                    return "Pausado";
+                  case "ended":
+                    return "Finalizado";
+                  default:
+                    return "Não definido";
+                }
+              })()}
+            </p>
           </div>
           <div className="flex justify-center">
             <p className="text-sm text-slate-500 text-center">
@@ -106,6 +154,9 @@ export default function OrderInfo({ params }: { params: ParamsType }) {
           </div>
           <hr />
           <div className="flex flex-col items-center ">
+            <div>
+              <QRCode value={url} />
+            </div>
             <FormGroup>
               <Label for="deviceModel" className="text-sm font-bold">
                 Modelo
@@ -159,7 +210,7 @@ export default function OrderInfo({ params }: { params: ParamsType }) {
                 </Label>
                 <Input
                   name="serviceDescription"
-                  type="text"
+                  type="textarea"
                   id="serviceDescription"
                   placeholder="Descreva o serviço a ser realizado!"
                   value={serviceDescription}
@@ -184,27 +235,7 @@ export default function OrderInfo({ params }: { params: ParamsType }) {
                   }}
                 />
               </FormGroup>
-              <FormGroup>
-                <Label for="deadline" className="text-sm font-bold">
-                  Status do Serviço
-                </Label>
-                <Input
-                  name="deadline"
-                  type="select"
-                  id="deadline"
-                  placeholder=""
-                  required
-                  value={serviceStatus}
-                  onChange={(event) => {
-                    setServiceStatus(event.target.value);
-                  }}
-                >
-                  <option value="pending">Pendente</option>
-                  <option value="started">Iniciado</option>
-                  <option value="paused">Pausado</option>
-                  <option value="ended">Finalizado</option>
-                </Input>
-              </FormGroup>
+
               <button
                 type="submit"
                 className=" max-[370px]:text-sm max-[370px]:w-32 text-white text-center font-bold px-2 py-1 rounded-lg  transition ease-in-out delay-150 bg-azul hover:-translate-y-1 hover:scale-110 hover:bg-azulClaro duration-300"
