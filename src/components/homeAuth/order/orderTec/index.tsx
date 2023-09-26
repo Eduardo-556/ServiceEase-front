@@ -3,17 +3,21 @@
 import { ParamsType } from "@/app/home/servicos/[orderId]/page";
 import ToastComponent from "@/components/common/toast";
 import ordersService from "@/services/ordersService";
-import { useEffect, useState } from "react";
+import { useRouter } from "next/navigation";
+import { FormEvent, useEffect, useState } from "react";
 import { Container, Form, FormGroup, Input, Label } from "reactstrap";
 
 export default function OrderTec({ params }: { params: ParamsType }) {
   const orderId = params.orderId;
+  const router = useRouter();
   const [seconds, setSeconds] = useState(0);
   const [isActive, setIsActive] = useState(false);
   const [color, setColor] = useState("");
   const [toastIsOpen, setToastIsOpen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
-
+  const [priceHours, setPriceHours] = useState(30.0);
+  const [priceParts, setPriceParts] = useState(0);
+  const [totalCost, setTotalCost] = useState(0);
   useEffect(() => {
     ordersService.getDetails(orderId).then((order) => {
       return setSeconds(order.totalTime);
@@ -50,27 +54,6 @@ export default function OrderTec({ params }: { params: ParamsType }) {
     setIsActive(false);
   };
 
-  const handleSave = async () => {
-    const res = await ordersService.postUpdateTime(orderId, {
-      totalTime: seconds,
-      serviceStatus: "ended",
-    });
-    if (res === 200) {
-      setToastIsOpen(true);
-      setErrorMessage("Serviço atualizado com sucesso!");
-      setColor("bg-success");
-      setTimeout(() => {
-        setToastIsOpen(false);
-      }, 3000);
-    } else {
-      setToastIsOpen(true);
-      setErrorMessage("Você não pode mudar para esse valor!");
-      setColor("bg-danger");
-      setTimeout(() => {
-        setToastIsOpen(false);
-      }, 3000);
-    }
-  };
   function formatSecondsToTime(seconds: number) {
     const hours = Math.floor(seconds / 3600);
     const minutes = Math.floor((seconds % 3600) / 60);
@@ -83,6 +66,50 @@ export default function OrderTec({ params }: { params: ParamsType }) {
     return `${formattedHours}:${formattedMinutes}:${formattedSeconds}`;
   }
 
+  useEffect(() => {
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+    const fractionHours = minutes / 60;
+    const totalHours = hours + fractionHours;
+    const hoursCost = totalHours * (priceHours ? priceHours : 0);
+    const totalCost = hoursCost + (priceParts ? priceParts : 0);
+    setTotalCost(totalCost);
+  }, [priceHours, priceParts, seconds]);
+
+  const handleSubmit = async function (event: FormEvent<HTMLFormElement>) {
+    event.preventDefault();
+    const data = new FormData(event.currentTarget);
+    const priceHour = parseFloat(data.get("priceHour") as string);
+    const spentParts = parseFloat(data.get("spentParts") as string);
+    const hours = Math.floor(seconds / 3600);
+    const minutes = Math.floor((seconds % 3600) / 60);
+
+    const fractionHours = minutes / 60;
+    const totalHours = hours + fractionHours;
+    const hoursCost = totalHours * priceHour;
+    const totalCost = hoursCost + spentParts;
+
+    const res = await ordersService.postUpdate(orderId, {
+      totalCost: totalCost,
+      serviceStatus: "ended",
+    });
+    if (res === 200) {
+      setToastIsOpen(true);
+      setErrorMessage("Serviço finalizado com sucesso!");
+      setColor("bg-success");
+      setTimeout(() => {
+        setToastIsOpen(false);
+      }, 3000);
+      router.push("/home/servicos");
+    } else {
+      setToastIsOpen(true);
+      setErrorMessage("Erro ao finalizar serviço, verifique as informações!");
+      setColor("bg-danger");
+      setTimeout(() => {
+        setToastIsOpen(false);
+      }, 3000);
+    }
+  };
   return (
     <>
       <Container>
@@ -114,30 +141,50 @@ export default function OrderTec({ params }: { params: ParamsType }) {
             </div>
           </div>
           <div>
-            <Form className="py-5 flex flex-col">
+            <Form
+              onSubmit={handleSubmit}
+              className="py-5 flex flex-col justify-center items-center gap-1"
+            >
               <FormGroup>
-                <Label for="deviceModel" className="text-sm font-bold">
+                <Label for="priceHour" className="text-sm font-bold">
                   Preço por hora de serviço
                 </Label>
                 <Input
-                  name="deviceModel"
-                  type="number"
-                  id="deviceModel"
-                  placeholder="Qual o valor por hora deseja cobrar?"
+                  name="priceHour"
+                  type="text"
+                  id="priceHour"
+                  placeholder="$12,50"
+                  inputMode="numeric"
+                  value={priceHours ? priceHours : 0}
+                  onChange={(e) => setPriceHours(parseFloat(e.target.value))}
                   required
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="deviceModel" className="text-sm font-bold">
+                <Label for="spentParts" className="text-sm font-bold">
                   Gasto com peças / equipamentos
                 </Label>
                 <Input
-                  name="deviceModel"
-                  type="number"
+                  name="spentParts"
+                  type="text"
                   id="deviceModel"
-                  placeholder="Caso não tenha, Deixe em branco"
+                  inputMode="numeric"
+                  value={priceParts ? priceParts : 0}
+                  onChange={(e) => setPriceParts(parseFloat(e.target.value))}
+                  placeholder="$50,00   Caso não tenha, Deixe em branco"
                 />
               </FormGroup>
+              <div className="flex flex-col  justify-center items-center ">
+                <span className="font-extrabold">Preço Total do Serviço</span>
+                <div className=" flex justify-center items-center border-solid border-1 bg-slate-50 border-azulClaro m-1 p-1 rounded-lg">
+                  <p className=" text-center font-semibold text-green-500 ml-1">
+                    $
+                  </p>
+                  <p className=" text-center font-semibold">
+                    {totalCost.toFixed(2)}
+                  </p>
+                </div>
+              </div>
               <button
                 type="submit"
                 className=" max-[370px]:text-sm max-[370px]:w-32 text-white text-center font-bold px-2 py-1 rounded-lg  transition ease-in-out delay-150 bg-azul hover:-translate-y-1 hover:scale-110 hover:bg-azulClaro duration-300"
