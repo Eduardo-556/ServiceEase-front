@@ -6,13 +6,13 @@ import { FormEvent, useEffect, useState } from "react";
 import authService from "@/services/authService";
 import { useRouter } from "next/navigation";
 import ToastComponent from "@/components/common/toast";
-
+import Cookies from "js-cookie";
 export default function RegisterBody() {
   const router = useRouter();
   const [toastIsOpen, setToastIsOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   useEffect(() => {
-    if (sessionStorage.getItem("serviceEase-token")) {
+    if (Cookies.get("serviceEase-token")) {
       router.push("/home");
     }
   });

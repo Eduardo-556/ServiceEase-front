@@ -113,7 +113,7 @@ export default function CreateOrderForm() {
               </Label>
               <Input
                 name="serviceDescription"
-                type="text"
+                type="textarea"
                 id="serviceDescription"
                 placeholder="Descreva o serviço a ser realizado!"
               />

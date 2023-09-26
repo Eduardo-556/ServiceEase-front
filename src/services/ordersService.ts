@@ -1,7 +1,7 @@
 import api from "./api";
 import { CustomerType } from "./customerService";
 import profileService from "./profileService";
-
+import Cookies from 'js-cookie';
 export type OrderType = {
   id: number;
   deviceModel: string;
@@ -22,12 +22,13 @@ export type OrderType = {
 };
 
 interface OrderParams {
-  deviceModel: string;
-  deviceSerial: string;
-  deviceImei: string;
-  serviceDescription: string;
-  deadline: Date;
-  serviceStatus: string;
+  deviceModel?: string;
+  deviceSerial?: string;
+  deviceImei?: string;
+  serviceDescription?: string;
+  deadline?: Date;
+  serviceStatus?: string;
+  totalCost?: number;
 }
 
 interface CreateOrderParams {
@@ -51,7 +52,7 @@ type DeleteOrder = {
 
 const ordersService = {
   getSearch: async (name: string) => {
-    const token = sessionStorage.getItem("serviceEase-token");
+    const token = Cookies.get("serviceEase-token");
     const { id } = await profileService.fetchCurrent();
 
     const res = await api
@@ -68,7 +69,7 @@ const ordersService = {
   },
 
   getDetails: async (orderId: string) => {
-    const token = sessionStorage.getItem("serviceEase-token");
+    const token = Cookies.get("serviceEase-token");
     const res = await api
       .get(`/service/${orderId}`, {
         headers: {
@@ -83,7 +84,7 @@ const ordersService = {
   },
 
   postUpdate: async (orderId: string, params: OrderParams) => {
-    const token = sessionStorage.getItem("serviceEase-token");
+    const token = Cookies.get("serviceEase-token");
     const res = await api
       .put(`/service/update/${orderId}`, params, {
         headers: {
@@ -98,7 +99,7 @@ const ordersService = {
   },
 
   postUpdateTime: async (orderId: string, params: TimeParams) => {
-    const token = sessionStorage.getItem("serviceEase-token");
+    const token = Cookies.get("serviceEase-token");
     const res = await api
       .put(`/service/update/${orderId}`, params, {
         headers: {
@@ -113,7 +114,7 @@ const ordersService = {
   },
 
   postCreate: async (params: CreateOrderParams) => {
-    const token = sessionStorage.getItem("serviceEase-token");
+    const token = Cookies.get("serviceEase-token");
 
     const res = await api
       .post(`/service/create`, params, {
@@ -129,7 +130,7 @@ const ordersService = {
   },
 
   deleteOrder: async (params: DeleteOrder) => {
-    const token = sessionStorage.getItem("serviceEase-token");
+    const token = Cookies.get("serviceEase-token");
     const res = await api
       .delete("/service/delete", {
         headers: {

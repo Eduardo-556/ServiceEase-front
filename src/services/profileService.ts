@@ -1,5 +1,5 @@
 import api from "./api";
-
+import Cookies from "js-cookie";
 interface UserParams {
   firstName: string;
   lastName: string;
@@ -15,7 +15,7 @@ interface PassswordParams {
 
 const profileService = {
   fetchCurrent: async () => {
-    const token = sessionStorage.getItem("serviceEase-token");
+    const token = Cookies.get("serviceEase-token");
 
     const res = await api
       .get("/userdetails", {
@@ -32,7 +32,7 @@ const profileService = {
   },
 
   userUpdate: async (params: UserParams) => {
-    const token = sessionStorage.getItem("serviceEase-token");
+    const token = Cookies.get("serviceEase-token");
     const res = await api
       .put("/users/current", params, {
         headers: {
@@ -49,7 +49,7 @@ const profileService = {
   },
 
   passwordUpdate: async (params: PassswordParams) => {
-    const token = sessionStorage.getItem("serviceEase-token");
+    const token = Cookies.get("serviceEase-token");
     const res = await api
       .put("/users/current/password", params, {
         headers: {

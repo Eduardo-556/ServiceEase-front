@@ -6,7 +6,7 @@ import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
 import ToastComponent from "@/components/common/toast";
 import authService from "@/services/authService";
-
+import Cookies from "js-cookie";
 export default function LoginBody() {
   const router = useRouter();
   const searchParams = useSearchParams();
@@ -14,7 +14,7 @@ export default function LoginBody() {
   const [toastIsOpen, setToastIsOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   useEffect(() => {
-    if (sessionStorage.getItem("serviceEase-token")) {
+    if (Cookies.get("serviceEase-token")) {
       router.push("/home");
     }
   });
@@ -40,7 +40,12 @@ export default function LoginBody() {
     const { status } = await authService.login(params);
 
     if (status === 200) {
-      router.push("/home");
+      const paginaAnterior = localStorage.getItem("paginaAnterior");
+      if (paginaAnterior) {
+        router.push(paginaAnterior);
+      } else {
+        router.push("/home");
+      }
     } else {
       setToastColor("bg-danger");
       setToastIsOpen(true);

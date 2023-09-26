@@ -1,4 +1,5 @@
 import api from "./api";
+import Cookies from "js-cookie";
 
 interface RegisterParams {
   firstName: string;
@@ -34,7 +35,7 @@ const authService = {
       return error;
     });
     if (res.status === 200) {
-      sessionStorage.setItem("serviceEase-token", res.data.token);
+      Cookies.set("serviceEase-token", res.data.token, { expires: 7 });
     }
     return res;
   },

@@ -1,6 +1,6 @@
 import api from "./api";
 import profileService from "./profileService";
-
+import Cookies from "js-cookie";
 export type CustomerType = {
   id: number;
   firstName: string;
@@ -38,7 +38,7 @@ type DeleteCustomer = {
 
 const customerService = {
   postCreate: async (params: CreateCustomer) => {
-    const token = sessionStorage.getItem("serviceEase-token");
+    const token = Cookies.get("serviceEase-token");
     const res = await api
       .post("/customer/create", params, {
         headers: {
@@ -52,7 +52,7 @@ const customerService = {
   },
 
   getAll: async () => {
-    const token = sessionStorage.getItem("serviceEase-token");
+    const token = Cookies.get("serviceEase-token");
     const { id } = await profileService.fetchCurrent();
 
     const res = await api.get(`/users/${id}/customer`, {
@@ -65,7 +65,7 @@ const customerService = {
   },
 
   getSearch: async (name: string) => {
-    const token = sessionStorage.getItem("serviceEase-token");
+    const token = Cookies.get("serviceEase-token");
     const { id } = await profileService.fetchCurrent();
 
     const res = await api
@@ -82,7 +82,7 @@ const customerService = {
   },
 
   getDetails: async (customerId: string) => {
-    const token = sessionStorage.getItem("serviceEase-token");
+    const token = Cookies.get("serviceEase-token");
     const { id } = await profileService.fetchCurrent();
 
     const res = await api
@@ -99,7 +99,7 @@ const customerService = {
   },
 
   postUpdate: async (customerId: string, params: CustomerParams) => {
-    const token = sessionStorage.getItem("serviceEase-token");
+    const token = Cookies.get("serviceEase-token");
     const res = await api
       .put(`/customer/update/${customerId}`, params, {
         headers: {
@@ -113,7 +113,7 @@ const customerService = {
   },
 
   deleteCustomer: async (params: DeleteCustomer) => {
-    const token = sessionStorage.getItem("serviceEase-token");
+    const token = Cookies.get("serviceEase-token");
     const res = await api
       .delete("/customer/delete", {
         headers: {
