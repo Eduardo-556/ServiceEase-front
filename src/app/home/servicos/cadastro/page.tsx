@@ -5,15 +5,24 @@ import { useRouter } from "next/navigation";
 
 import { useEffect, useState } from "react";
 import { Col, Container, Row } from "reactstrap";
-
+import Cookies from "js-cookie";
+import SpinnerLoading from "@/components/common/spinnerLoading";
 export default function Page() {
   const router = useRouter();
   const [form, setForm] = useState("createOrderForm");
+  const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
-    if (!sessionStorage.getItem("serviceEase-token")) {
+    if (!Cookies.get("serviceEase-token")) {
+      localStorage.setItem("paginaAnterior", window.location.href);
       router.push("/login");
+    } else {
+      localStorage.removeItem("paginaAnterior");
     }
-  });
+    setIsLoaded(true);
+  }, []);
+  if (!isLoaded) {
+    return <SpinnerLoading />;
+  }
   return (
     <>
       <div>

@@ -5,17 +5,22 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
-
+import Cookies from "js-cookie";
+import SpinnerLoading from "@/components/common/spinnerLoading";
 export default function Page() {
   const [searchName, setSearchName] = useState("");
   const [searchResult, setSearchResult] = useState<CustomerType[]>([]);
+  const [isLoaded, setIsLoaded] = useState(false);
   const router = useRouter();
 
   useEffect(() => {
-    if (!sessionStorage.getItem("serviceEase-token")) {
+    if (!Cookies.get("serviceEase-token")) {
+      localStorage.setItem("paginaAnterior", window.location.href);
       router.push("/login");
+    } else {
+      localStorage.removeItem("paginaAnterior");
     }
-  });
+  }, []);
 
   const searchCustomer = async function () {
     const res = await customerService.getSearch(searchName);
@@ -33,8 +38,12 @@ export default function Page() {
 
   useEffect(() => {
     searchCustomer();
+    setIsLoaded(true);
   }, [searchName]);
 
+  if (!isLoaded) {
+    return <SpinnerLoading/>;
+  }
   return (
     <>
       <div className="flex min-h-screen justify-center overflow-hidden mt-4">
@@ -59,34 +68,38 @@ export default function Page() {
               </span>
             </div>
           </form>
-          <ul className="p-0 ml-1 mr-2">
-            {searchResult?.map((customer) => (
-              <li key={customer.id}>
-                <Link
-                  href={`/home/clientes/${customer.id}`}
-                  className="no-underline"
-                >
-                  <div className="mt-2 w-full overflow-hidden rounded-md bg-white">
-                    <div className="py-2 px-3 hover:bg-slate-100">
-                      <p className="text-sm  text-gray-600 font-bold">
-                        {`${customer.firstName.toUpperCase()} ${customer.lastName.toUpperCase()}`}
-                      </p>
-                      <div className="text-sm text-gray-500 break-words max-[452px]:text-xs">
-                        <span className="font-bold">Documento: </span>
-                        {customer.nif} <br />
-                        <span className="font-bold">Email: </span>
-                        {customer.email} <br />
-                        <span className="font-bold">Contato: </span>
-                        {customer.phone} <br />
-                        <span className="font-bold">Endereço: </span>
-                        {customer.address} <br />
+          {Cookies.get("serviceEase-token") ? (
+            <ul className="p-0 ml-1 mr-2" suppressHydrationWarning={true}>
+              {searchResult?.map((customer) => (
+                <li key={customer.id}>
+                  <Link
+                    href={`/home/clientes/${customer.id}`}
+                    className="no-underline"
+                  >
+                    <div className="mt-2 w-full overflow-hidden rounded-md bg-white">
+                      <div className="py-2 px-3 hover:bg-slate-100">
+                        <p className="text-sm  text-gray-600 font-bold">
+                          {`${customer.firstName.toUpperCase()} ${customer.lastName.toUpperCase()}`}
+                        </p>
+                        <div className="text-sm text-gray-500 break-words max-[452px]:text-xs">
+                          <span className="font-bold">Documento: </span>
+                          {customer.nif} <br />
+                          <span className="font-bold">Email: </span>
+                          {customer.email} <br />
+                          <span className="font-bold">Contato: </span>
+                          {customer.phone} <br />
+                          <span className="font-bold">Endereço: </span>
+                          {customer.address} <br />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ul>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </>

@@ -5,17 +5,21 @@ import { MagnifyingGlassIcon } from "@heroicons/react/24/solid";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
-
+import Cookies from "js-cookie";
+import SpinnerLoading from "@/components/common/spinnerLoading";
 export default function Page() {
   const router = useRouter();
   const [searchName, setSearchName] = useState("");
   const [searchResult, setSearchResult] = useState<OrderType[]>([]);
-
+  const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
-    if (!sessionStorage.getItem("serviceEase-token")) {
+    if (!Cookies.get("serviceEase-token")) {
+      localStorage.setItem("paginaAnterior", window.location.href);
       router.push("/login");
+    } else {
+      localStorage.removeItem("paginaAnterior");
     }
-  });
+  }, []);
 
   const searchOrders = async function () {
     const res = await ordersService.getSearch(searchName);
@@ -33,7 +37,12 @@ export default function Page() {
 
   useEffect(() => {
     searchOrders();
+    setIsLoaded(true);
   }, [searchName]);
+
+  if (!isLoaded) {
+    return <SpinnerLoading />;
+  }
 
   return (
     <>
@@ -59,22 +68,23 @@ export default function Page() {
               </span>
             </div>
           </form>
-          <ul className="p-0 ml-1 mr-2">
-            {searchResult?.map((order) => (
-              <li key={order.id}>
-                <Link
-                  href={`/home/servicos/${order.id}`}
-                  className="no-underline"
-                >
-                  <div className="mt-2 w-full overflow-hidden rounded-md bg-white">
-                    <div className="py-2 px-3 hover:bg-slate-100">
-                      <p className="text-sm  text-gray-600 font-bold">
-                        {`${order.deviceModel.toUpperCase()}`}
-                      </p>
-                      <div className="text-sm text-gray-500 break-words max-[452px]:text-xs">
-                        <span className="font-bold">Status: </span>
-                        <span
-                          className={`
+          {Cookies.get("serviceEase-token") ? (
+            <ul className="p-0 ml-1 mr-2">
+              {searchResult?.map((order) => (
+                <li key={order.id}>
+                  <Link
+                    href={`/home/servicos/${order.id}`}
+                    className="no-underline"
+                  >
+                    <div className="mt-2 w-full overflow-hidden rounded-md bg-white">
+                      <div className="py-2 px-3 hover:bg-slate-100">
+                        <p className="text-sm  text-gray-600 font-bold">
+                          {`${order.deviceModel.toUpperCase()}`}
+                        </p>
+                        <div className="text-sm text-gray-500 break-words max-[452px]:text-xs">
+                          <span className="font-bold">Status: </span>
+                          <span
+                            className={`
                                     ${
                                       order.serviceStatus === "pending"
                                         ? "text-red-500"
@@ -96,35 +106,38 @@ export default function Page() {
                                         : ""
                                     }
                                     `}
-                        >
-                          {(() => {
-                            switch (order.serviceStatus) {
-                              case "pending":
-                                return "Pendente";
-                              case "started":
-                                return "Iniciado";
-                              case "paused":
-                                return "Pausado";
-                              case "ended":
-                                return "Finalizado";
-                              default:
-                                return "Não definido";
-                            }
-                          })()}
-                        </span>
-                        <br />
-                        <span className="font-bold">Serviço: </span>
-                        {order.serviceDescription} <br />
-                        <span className="font-bold">Cliente: </span>
-                        {`${order.Customer.firstName.toUpperCase()} ${order.Customer.lastName.toUpperCase()}`}
-                        <br />
+                          >
+                            {(() => {
+                              switch (order.serviceStatus) {
+                                case "pending":
+                                  return "Pendente";
+                                case "started":
+                                  return "Iniciado";
+                                case "paused":
+                                  return "Pausado";
+                                case "ended":
+                                  return "Finalizado";
+                                default:
+                                  return "Não definido";
+                              }
+                            })()}
+                          </span>
+                          <br />
+                          <span className="font-bold">Serviço: </span>
+                          {order.serviceDescription} <br />
+                          <span className="font-bold">Cliente: </span>
+                          {`${order.Customer.firstName.toUpperCase()} ${order.Customer.lastName.toUpperCase()}`}
+                          <br />
+                        </div>
                       </div>
                     </div>
-                  </div>
-                </Link>
-              </li>
-            ))}
-          </ul>
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          ) : (
+            <></>
+          )}
         </div>
       </div>
     </>

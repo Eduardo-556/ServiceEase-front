@@ -3,12 +3,14 @@
 import ToastComponent from "@/components/common/toast";
 import CreateCustomer from "@/components/homeAuth/customer/customerCreate";
 import CustomerInfo from "@/components/homeAuth/customer/customerInfo";
+import CustomerOrders from "@/components/homeAuth/customer/customerOrders";
 import customerService, { CustomerType } from "@/services/customerService";
 import profileService from "@/services/profileService";
 import { useRouter } from "next/navigation";
-
+import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
 import { Col, Container, Row, Toast } from "reactstrap";
+import SpinnerLoading from "@/components/common/spinnerLoading";
 
 export interface ParamsType {
   customerId: string;
@@ -17,10 +19,13 @@ export interface ParamsType {
 export default function Page({ params }: { params: ParamsType }) {
   const router = useRouter();
   useEffect(() => {
-    if (!sessionStorage.getItem("serviceEase-token")) {
+    if (!Cookies.get("serviceEase-token")) {
+      localStorage.setItem("paginaAnterior", window.location.href);
       router.push("/login");
+    } else {
+      localStorage.removeItem("paginaAnterior");
     }
-  });
+  }, []);
   const [isConfirmationModalOpen, setIsConfirmationModalOpen] = useState(false);
   const [form, setForm] = useState("customerForm");
   const [customer, setCustomer] = useState<CustomerType>();
@@ -28,27 +33,22 @@ export default function Page({ params }: { params: ParamsType }) {
   const [color, setColor] = useState("");
   const [toastIsOpen, setToastIsopen] = useState(false);
   const [errorMessage, setErrorMessage] = useState("");
+  const [isLoaded, setIsLoaded] = useState(false);
   const customerId = params.customerId;
-  const getCustomer = async function () {
-    if (typeof customerId !== "string") {
-      console.log(typeof customerId);
-      return;
-    }
-    const res = await customerService.getDetails(customerId);
-
-    setCustomer(res.data);
-  };
 
   useEffect(() => {
-    getCustomer();
-  }, [customerId]);
-
-  useEffect(() => {
+    customerService.getDetails(customerId).then((res) => {
+      setCustomer(res.data);
+    });
     profileService.fetchCurrent().then((user) => {
       setUserId(user.id);
     });
-  }, []);
+    setIsLoaded(true);
+  }, [customerId]);
 
+  if (!isLoaded) {
+    return <SpinnerLoading />;
+  }
   function handleOpenConfirmationModal() {
     setIsConfirmationModalOpen(true);
   }
@@ -144,8 +144,13 @@ export default function Page({ params }: { params: ParamsType }) {
                   </div>
                 </div>
               )}
-              {form === "customerForm" ? (
+              {form === "customerForm" && Cookies.get("serviceEase-token") ? (
                 <CustomerInfo params={params} />
+              ) : (
+                <></>
+              )}
+              {form === "serviceForm" && Cookies.get("serviceEase-token") ? (
+                <CustomerOrders customerId={params.customerId} />
               ) : (
                 <></>
               )}

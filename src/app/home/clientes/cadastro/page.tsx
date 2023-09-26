@@ -3,14 +3,17 @@ import CreateCustomer from "@/components/homeAuth/customer/customerCreate";
 import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { Col, Container, Row } from "reactstrap";
-
+import Cookies from "js-cookie";
 export default function Page() {
   const router = useRouter();
   useEffect(() => {
-    if (!sessionStorage.getItem("serviceEase-token")) {
+    if (!Cookies.get("serviceEase-token")) {
+      localStorage.setItem("paginaAnterior", window.location.href);
       router.push("/login");
+    } else {
+      localStorage.removeItem("paginaAnterior");
     }
-  });
+  }, []);
   return (
     <>
       <div>

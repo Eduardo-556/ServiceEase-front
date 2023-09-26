@@ -4,25 +4,35 @@ import OrderShowHome from "@/components/homeAuth/order/orderShowHome";
 import profileService from "@/services/profileService";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
-
+import Cookies from "js-cookie";
 import { useEffect, useState } from "react";
+import SpinnerLoading from "@/components/common/spinnerLoading";
 
 export default function Home() {
   const router = useRouter();
   const [firstName, setFirstName] = useState("");
   const [lastName, setLastName] = useState("");
+  const [isLoaded, setIsLoaded] = useState(false);
   useEffect(() => {
-    if (!sessionStorage.getItem("serviceEase-token")) {
+    if (!Cookies.get("serviceEase-token")) {
+      localStorage.setItem("paginaAnterior", window.location.href);
       router.push("/login");
+    } else {
+      localStorage.removeItem("paginaAnterior");
     }
-  });
+  }, []);
 
   useEffect(() => {
     profileService.fetchCurrent().then((user) => {
       setFirstName(user.firstName);
       setLastName(user.lastName);
     });
+    setIsLoaded(true);
   }, []);
+
+  if (!isLoaded) {
+    return <SpinnerLoading />;
+  }
 
   return (
     <>
@@ -31,7 +41,7 @@ export default function Home() {
           Welcome to ServiceEase <br />
           <span className="text-azul">{` ${firstName} ${lastName}`}</span>!
         </h1>
-        <div className="flex flex-col">
+        <div className="flex">
           <Link
             href="/home/servicos/cadastro"
             className="no-underline  text-white text-center font-bold my-3 mx-2 py-2 px-2 rounded-lg  transition ease-in-out delay-150 bg-azul hover:-translate-y-1 hover:scale-110 hover:bg-azulClaro duration-300"
@@ -44,9 +54,15 @@ export default function Home() {
           >
             Cadastrar cliente
           </Link>
+          <Link
+            href="/home/clientes/cadastro"
+            className="no-underline  text-white text-center font-bold my-3 mx-2 py-2 px-2 rounded-lg  transition ease-in-out delay-150 bg-azul hover:-translate-y-1 hover:scale-110 hover:bg-azulClaro duration-300"
+          >
+            Ler QRCode
+          </Link>
         </div>
       </div>
-      {sessionStorage.getItem("serviceEase-token") ? <OrderShowHome /> : <></>}
+      {Cookies.get("serviceEase-token") ? <OrderShowHome /> : <></>}
     </>
   );
 }

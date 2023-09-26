@@ -5,19 +5,22 @@ import UserForm from "@/components/homeAuth/profile/user";
 import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Col, Container, Row } from "reactstrap";
-
+import Cookies from "js-cookie";
 export default function Page() {
   const [form, setForm] = useState("userForm");
   const router = useRouter();
 
   useEffect(() => {
-    if (!sessionStorage.getItem("serviceEase-token")) {
+    if (!Cookies.get("serviceEase-token")) {
+      localStorage.setItem("paginaAnterior", window.location.href);
       router.push("/login");
+    } else {
+      localStorage.removeItem("paginaAnterior");
     }
-  });
+  }, []);
 
   const handleLogout = () => {
-    sessionStorage.clear();
+    Cookies.remove("serviceEase-token");
     router.push("/");
   };
   return (
