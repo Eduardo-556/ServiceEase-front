@@ -1,7 +1,7 @@
 import api from "./api";
 import { CustomerType } from "./customerService";
 import profileService from "./profileService";
-import Cookies from 'js-cookie';
+import Cookies from "js-cookie";
 export type OrderType = {
   id: number;
   deviceModel: string;
@@ -26,6 +26,7 @@ interface OrderParams {
   deviceSerial?: string;
   deviceImei?: string;
   serviceDescription?: string;
+  technicalDescription?: string;
   deadline?: Date;
   serviceStatus?: string;
   totalCost?: number;

@@ -4,7 +4,7 @@ import { ParamsType } from "@/app/home/servicos/[orderId]/page";
 import ToastComponent from "@/components/common/toast";
 import ordersService from "@/services/ordersService";
 import { useRouter } from "next/navigation";
-import { FormEvent, useEffect, useState } from "react";
+import { FormEvent, use, useEffect, useState } from "react";
 import { Container, Form, FormGroup, Input, Label } from "reactstrap";
 
 export default function OrderTec({ params }: { params: ParamsType }) {
@@ -18,11 +18,19 @@ export default function OrderTec({ params }: { params: ParamsType }) {
   const [priceHours, setPriceHours] = useState(30.0);
   const [priceParts, setPriceParts] = useState(0);
   const [totalCost, setTotalCost] = useState(0);
+  const [technicalDescription, setTechnicalDescription] = useState("");
   useEffect(() => {
     ordersService.getDetails(orderId).then((order) => {
-      return setSeconds(order.totalTime);
+      setSeconds(order.totalTime);
+      setTechnicalDescription(order.technicalDescription);
     });
   }, [orderId]);
+
+  useEffect(() => {
+    ordersService.postUpdate(orderId, {
+      technicalDescription,
+    });
+  }, [technicalDescription]);
 
   useEffect(() => {
     let interval: number | undefined;
@@ -145,6 +153,21 @@ export default function OrderTec({ params }: { params: ParamsType }) {
               onSubmit={handleSubmit}
               className="py-5 flex flex-col justify-center items-center gap-1"
             >
+              <FormGroup>
+                <Label for="technicalDescription" className="text-sm font-bold">
+                  Descrição técnica do serviço
+                </Label>
+                <Input
+                  className="h-36"
+                  name="technicalDescription"
+                  type="textarea"
+                  id="technicalDescription"
+                  placeholder="Descreva o serviço, trabalhos realizado, peças trocadas, aguardando peça, ...."
+                  inputMode="numeric"
+                  value={technicalDescription}
+                  onChange={(e) => setTechnicalDescription(e.target.value)}
+                />
+              </FormGroup>
               <FormGroup>
                 <Label for="priceHour" className="text-sm font-bold">
                   Preço por hora de serviço
