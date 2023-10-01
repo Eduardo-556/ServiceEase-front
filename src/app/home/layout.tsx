@@ -1,24 +1,21 @@
 import Sidebar from "@/components/homeAuth/sidebar";
+import ThemeContextProvider from "@/components/hooks/theme";
 import { Metadata } from "next";
 import { ReactNode } from "react";
-
-type Props = {
-  children: ReactNode;
-};
 
 export const metadata: Metadata = {
   title: "ServiceEase | Home",
 };
 
-const layout = (props: Props) => {
+export default function layout({ children }: { children: ReactNode }) {
   return (
-    <main className="flex mx-auto static">
-      <div className="h-screen  fixed">
-        <Sidebar />
-      </div>
-      <div className="w-screen ml-14">{props.children}</div>
-    </main>
+    <ThemeContextProvider>
+      <main className="flex mx-auto static dark:bg-black">
+        <div className="h-screen  fixed">
+          <Sidebar />
+        </div>
+        <div className="w-screen ml-14">{children}</div>
+      </main>
+    </ThemeContextProvider>
   );
-};
-
-export default layout;
+}

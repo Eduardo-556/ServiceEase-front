@@ -97,10 +97,10 @@ export default function OrderInfo({ params }: { params: ParamsType }) {
       <Container>
         <Form
           onSubmit={handleOrderUpdate}
-          className="border-solid border-1 max-w-full border-azulClaro p-3 pt-0 mt-2"
+          className="border-solid border-1 max-w-full border-azulClaro p-3 pt-0 mt-2 dark:text-textPrimario"
         >
           <div className="flex items-center justify-center gap-2 w-[80%] mt-5 mx-auto uppercase">
-            <p className="text-3xl font-bold break-words max-[501px]:text-xl text-center">
+            <p className="text-3xl font-bold break-words max-[501px]:text-xl text-center dark:text-textPrimario">
               {`${deviceModel}`}
             </p>
             <p
@@ -144,7 +144,7 @@ export default function OrderInfo({ params }: { params: ParamsType }) {
             </p>
           </div>
           <div className="flex justify-center">
-            <p className="text-sm text-slate-500 text-center">
+            <p className="text-sm text-slate-500 text-center dark:text-secundario">
               Ordem de Serviço aberta em
               <br /> {`${date.getDate()} de ${month} de ${date.getFullYear()}`}
               <br />
@@ -162,6 +162,7 @@ export default function OrderInfo({ params }: { params: ParamsType }) {
                 Modelo
               </Label>
               <Input
+                className="dark:bg-primeiroPlano border-0 dark:text-secundario"
                 name="deviceModel"
                 type="text"
                 id="deviceModel"
@@ -178,6 +179,7 @@ export default function OrderInfo({ params }: { params: ParamsType }) {
                 Serial (opcional)
               </Label>
               <Input
+                className="dark:bg-primeiroPlano border-0 dark:text-secundario"
                 name="deviceSerial"
                 type="text"
                 id="deviceSerial"
@@ -194,6 +196,7 @@ export default function OrderInfo({ params }: { params: ParamsType }) {
                   Imei (opcional)
                 </Label>
                 <Input
+                  className="dark:bg-primeiroPlano border-0 dark:text-secundario"
                   name="deviceImei"
                   type="tel"
                   id="deviceImei"
@@ -209,6 +212,7 @@ export default function OrderInfo({ params }: { params: ParamsType }) {
                   Descrição do Serviço
                 </Label>
                 <Input
+                  className="dark:bg-primeiroPlano border-0 dark:text-secundario"
                   name="serviceDescription"
                   type="textarea"
                   id="serviceDescription"
@@ -224,6 +228,7 @@ export default function OrderInfo({ params }: { params: ParamsType }) {
                   Prazo para terminar o serviço
                 </Label>
                 <Input
+                  className="dark:bg-primeiroPlano border-0 dark:text-secundario"
                   name="deadline"
                   type="date"
                   id="deadline"

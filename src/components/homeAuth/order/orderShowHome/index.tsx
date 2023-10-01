@@ -47,14 +47,14 @@ export default function OrderShowHome() {
                   <li key={order.id}>
                     <Link
                       href={`/home/servicos/${order.id}`}
-                      className="no-underline"
+                      className="no-underline "
                     >
-                      <div className="mt-2 w-full overflow-hidden rounded-md bg-white">
-                        <div className="py-2 px-3 hover:bg-slate-100">
-                          <p className="text-sm  text-gray-600 font-bold">
+                      <div className=" mt-2 w-full overflow-hidden rounded-md  ">
+                        <div className="py-2 px-3 hover:bg-slate-100 dark:bg-primeiroPlano">
+                          <p className="text-sm  text-gray-600 font-bold dark:text-textPrimario">
                             {`${order.deviceModel.toUpperCase()}`}
                           </p>
-                          <div className="text-sm text-gray-500 break-words max-[452px]:text-xs">
+                          <div className="text-sm text-gray-500 break-words max-[452px]:text-xs dark:text-secundario">
                             <span className="font-bold">Status: </span>
                             <span
                               className={`
@@ -126,12 +126,12 @@ export default function OrderShowHome() {
                       href={`/home/servicos/${order.id}`}
                       className="no-underline"
                     >
-                      <div className="mt-2 w-full overflow-hidden rounded-md bg-white">
-                        <div className="py-2 px-3 hover:bg-slate-100">
-                          <p className="text-sm  text-gray-600 font-bold">
+                      <div className="mt-2 w-full overflow-hidden rounded-md bg-white ">
+                        <div className="py-2 px-3 hover:bg-slate-100 dark:bg-primeiroPlano">
+                          <p className="text-sm  text-gray-600 font-bold dark:text-textPrimario">
                             {`${order.deviceModel.toUpperCase()}`}
                           </p>
-                          <div className="text-sm text-gray-500 break-words max-[452px]:text-xs">
+                          <div className="text-sm text-gray-500 break-words max-[452px]:text-xs dark:text-secundario">
                             <span className="font-bold">Status: </span>
                             <span
                               className={`
@@ -204,11 +204,11 @@ export default function OrderShowHome() {
                       className="no-underline"
                     >
                       <div className="mt-2 w-full overflow-hidden rounded-md bg-white">
-                        <div className="py-2 px-3 hover:bg-slate-100">
-                          <p className="text-sm  text-gray-600 font-bold">
+                        <div className="py-2 px-3 hover:bg-slate-100 dark:bg-primeiroPlano">
+                          <p className="text-sm  text-gray-600 font-bold dark:text-textPrimario">
                             {`${order.deviceModel.toUpperCase()}`}
                           </p>
-                          <div className="text-sm text-gray-500 break-words max-[452px]:text-xs">
+                          <div className="text-sm text-gray-500 break-words max-[452px]:text-xs dark:text-secundario">
                             <span className="font-bold">Status: </span>
                             <span
                               className={`

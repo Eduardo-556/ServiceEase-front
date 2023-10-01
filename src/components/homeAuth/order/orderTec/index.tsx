@@ -122,11 +122,11 @@ export default function OrderTec({ params }: { params: ParamsType }) {
     <>
       <Container>
         <div className="border-solid border-1 max-w-full border-azulClaro p-3 pt-0 mt-2">
-          <h1 className="text-3xl font-bold break-words max-[501px]:text-xl text-center p-2">
+          <h1 className="text-3xl font-bold break-words max-[501px]:text-xl text-center p-2 dark:text-textPrimario">
             Área do Técnico
           </h1>
-          <div className="flex flex-col justify-center items-center gap-2 p-2 border-solid border-1 border-azulClaro rounded-full">
-            <div className="text-4xl font-bold">
+          <div className="flex flex-col justify-center items-center gap-2 p-2 border-solid border-1 border-azulClaro rounded-full dark:bg-primeiroPlano">
+            <div className="text-4xl font-bold dark:text-textPrimario">
               {formatSecondsToTime(seconds)}
             </div>
             <div className="flex justify-center items-center gap-1 max-[478px]:flex-col ">
@@ -142,7 +142,7 @@ export default function OrderTec({ params }: { params: ParamsType }) {
               </button>
               <button
                 onClick={resetTimer}
-                className="w-full px-4 py-2 rounded-full bg-yellow-500 hover:bg-yellow-600 text-white"
+                className="w-full px-4 py-2 rounded-full bg-yellow-500 hover:bg-yellow-600 text-white "
               >
                 Reiniciar
               </button>
@@ -154,11 +154,14 @@ export default function OrderTec({ params }: { params: ParamsType }) {
               className="py-5 flex flex-col justify-center items-center gap-1"
             >
               <FormGroup>
-                <Label for="technicalDescription" className="text-sm font-bold">
+                <Label
+                  for="technicalDescription"
+                  className="text-sm font-bold dark:text-textPrimario"
+                >
                   Descrição técnica do serviço
                 </Label>
                 <Input
-                  className="h-36"
+                  className="h-36 dark:bg-primeiroPlano dark:text-secundario"
                   name="technicalDescription"
                   type="textarea"
                   id="technicalDescription"
@@ -169,10 +172,14 @@ export default function OrderTec({ params }: { params: ParamsType }) {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="priceHour" className="text-sm font-bold">
+                <Label
+                  for="priceHour"
+                  className="text-sm font-bold dark:text-textPrimario"
+                >
                   Preço por hora de serviço
                 </Label>
                 <Input
+                  className="dark:bg-primeiroPlano border-0 dark:text-secundario"
                   name="priceHour"
                   type="text"
                   id="priceHour"
@@ -184,10 +191,14 @@ export default function OrderTec({ params }: { params: ParamsType }) {
                 />
               </FormGroup>
               <FormGroup>
-                <Label for="spentParts" className="text-sm font-bold">
+                <Label
+                  for="spentParts"
+                  className="text-sm font-bold dark:text-textPrimario"
+                >
                   Gasto com peças / equipamentos
                 </Label>
                 <Input
+                  className="dark:bg-primeiroPlano border-0 dark:text-secundario"
                   name="spentParts"
                   type="text"
                   id="deviceModel"
@@ -199,7 +210,7 @@ export default function OrderTec({ params }: { params: ParamsType }) {
               </FormGroup>
               <div className="flex flex-col  justify-center items-center ">
                 <span className="font-extrabold">Preço Total do Serviço</span>
-                <div className=" flex justify-center items-center border-solid border-1 bg-slate-50 border-azulClaro m-1 p-1 rounded-lg">
+                <div className=" flex justify-center items-center border-solid border-1 bg-slate-50 border-azulClaro m-1 p-1 rounded-lg dark:bg-primeiroPlano  dark:text-textPrimario">
                   <p className=" text-center font-semibold text-green-500 ml-1">
                     $
                   </p>
