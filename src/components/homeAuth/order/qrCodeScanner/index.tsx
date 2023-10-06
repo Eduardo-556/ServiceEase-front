@@ -1,71 +1,40 @@
-"use client";
+import { useRouter } from "next/navigation";
+import { useState } from "react";
 
-import jsQR from "jsqr";
-import { useEffect } from "react";
-
+import { QrReader } from "react-qr-reader";
 export default function QRCodeScanner() {
-  useEffect(() => {
-    const videoElement = document.createElement("video");
-    const canvasElement = document.createElement("canvas");
-    const context = canvasElement.getContext("2d");
-    let scanning = false;
+  const router = useRouter();
+  const [resultado, setResultado] = useState("");
 
-    const startScanner = () => {
-      const constraints = {
-        video: {
-          facingMode: "environment",
-          width: { ideal: 1280 },
-          height: { ideal: 720 },
-        },
-      };
+  const handleScan = (data: any, error: any) => {
+    if (data) {
+      setResultado(data.text);
+      router.push(data.text);
+      return;
+    }
+    handleError(error);
+  };
 
-      if (navigator.mediaDevices && navigator.mediaDevices.getUserMedia) {
-        navigator.mediaDevices
-          .getUserMedia(constraints)
-          .then((stream) => {
-            videoElement.srcObject = stream;
-            videoElement.play();
-            scanning = true;
-            scanQRCode();
-          })
-          .catch((error) => {
-            console.error("Error accessing the camera:", error);
-          });
-      } else {
-        console.error("getUserMedia is not supported in this browser.");
-      }
-    };
+  const handleError = (error: any) => {
+    console.error(error);
+  };
 
-    const scanQRCode = () => {
-      if (scanning) {
-        canvasElement.width = videoElement.videoWidth;
-        canvasElement.height = videoElement.videoHeight;
-        context!.drawImage(
-          videoElement,
-          0,
-          0,
-          canvasElement.width,
-          canvasElement.height
-        );
+  const handleRedirect = (data: any) => {
+    router.push(data.text);
+    console.log(data.text);
+  };
 
-        const imageData = context!.getImageData(
-          0,
-          0,
-          canvasElement.width,
-          canvasElement.height
-        );
-        const code = jsQR(imageData.data, imageData.width, imageData.height);
-
-        if (code) {
-          window.location.href = code.data; // Redirect to the URL in the QR code
-          scanning = false;
-        }
-
-        requestAnimationFrame(scanQRCode);
-      }
-    };
-
-    startScanner();
-  }, []);
-  return <></>;
+  return (
+    <>
+      <div>
+        <QrReader
+          constraints={{ facingMode: "user" }}
+          scanDelay={0}
+          onResult={handleScan}
+          videoStyle={{ width: "100%" }}
+        />
+        <p>resultado: {resultado}</p>
+      </div>
+    </>
+  );
 }
