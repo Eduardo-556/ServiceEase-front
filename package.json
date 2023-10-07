@@ -9,11 +9,11 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@blackbox-vision/react-qr-reader": "^5.0.0",
     "@heroicons/react": "^2.0.18",
     "@types/node": "20.5.7",
     "@types/react": "18.2.21",
     "@types/react-dom": "18.2.7",
-    "@types/react-qr-reader": "^2.1.5",
     "aos": "^2.3.4",
     "autoprefixer": "10.4.15",
     "axios": "^1.5.0",
@@ -28,7 +28,6 @@
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-modal": "^3.16.1",
-    "react-qr-reader": "^3.0.0-beta-1",
     "react-select": "^5.7.4",
     "reactstrap": "^9.2.0",
     "sass": "^1.66.1",

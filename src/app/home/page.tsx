@@ -69,7 +69,7 @@ export default function Home() {
           Cadastrar cliente
         </Link>
         <Link
-          href="/home/clientes/cadastro"
+          href="/home/qrCode"
           className="no-underline  text-white text-center font-bold my-3 mx-2 py-2 px-2 rounded-lg  transition ease-in-out delay-150 bg-azul hover:-translate-y-1 hover:scale-110 hover:bg-azulClaro duration-300"
         >
           Ler QRCode
