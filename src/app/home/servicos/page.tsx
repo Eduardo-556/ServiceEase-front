@@ -49,18 +49,18 @@ export default function Page() {
       <div className="flex min-h-screen justify-center overflow-hidden mt-4">
         <div className="flex flex-col items-center w-full  max-[452px]:w-60">
           <form onSubmit={handleSearch}>
-            <div className="flex justify-between overflow-hidden rounded-md bg-white shadow shadow-black/20 max-[452px]:w-64 dark:bg-primeiroPlano">
+            <div className="flex justify-between overflow-hidden rounded-md bg-white shadow shadow-black/20 max-[452px]:w-64 dark:bg-secundario">
               <input
                 name="search"
                 type="search"
-                className="flex py-2 px-3 focus:outline-none dark:bg-primeiroPlano"
+                className="flex py-2 px-3 focus:outline-none dark:bg-secundario"
                 placeholder="Pesquisar..."
                 value={searchName}
                 onChange={(event) => {
                   setSearchName(event.currentTarget.value.toLowerCase());
                 }}
               />
-              <div className="dark:bg-primeiroPlano">
+              <div className="dark:bg-secundario">
                 <span
                   onClick={handleSearchClick}
                   className="m-1 inline-flex cursor-pointer items-center rounded-md bg-azul px-2 py-2 hover:bg-azulClaro"
@@ -78,12 +78,12 @@ export default function Page() {
                     href={`/home/servicos/${order.id}`}
                     className="no-underline"
                   >
-                    <div className="mt-2 w-full overflow-hidden rounded-md bg-white dark:bg-primeiroPlano">
-                      <div className="py-2 px-3 hover:bg-slate-100 dark:bg-primeiroPlano">
-                        <p className="text-sm  text-gray-600 font-bold dark:text-textPrimario">
+                    <div className="mt-2 w-full overflow-hidden rounded-md bg-white dark:bg-secundario">
+                      <div className="py-2 px-3 hover:bg-slate-100 dark:bg-secundario">
+                        <p className="text-sm  text-gray-600 font-bold dark:text-white">
                           {`${order.deviceModel.toUpperCase()}`}
                         </p>
-                        <div className="text-sm text-gray-500 break-words max-[452px]:text-xs dark:text-secundario">
+                        <div className="text-sm text-gray-500 break-words max-[452px]:text-xs dark:text-textPrimario">
                           <span className="font-bold">Status: </span>
                           <span
                             className={`

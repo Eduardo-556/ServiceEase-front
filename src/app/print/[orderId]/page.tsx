@@ -1,18 +1,14 @@
 "use client";
-
-import { ParamsType } from "@/app/home/servicos/[orderId]/page";
-import ToastComponent from "@/components/common/toast";
-import ordersService from "@/services/ordersService";
-import { useRouter } from "next/navigation";
 import QRCode from "qrcode.react";
-import { FormEvent, useEffect, useState } from "react";
-import { Container, Form, FormGroup, Input, Label } from "reactstrap";
+import { ParamsType } from "../../home/servicos/[orderId]/page";
+import { Container, FormGroup, Input, Label } from "reactstrap";
+import { Form } from "reactstrap";
+import { useEffect, useState } from "react";
+import ordersService from "@/services/ordersService";
 
-export default function OrderInfo({ params }: { params: ParamsType }) {
+export default function Print({ params }: { params: ParamsType }) {
   const orderId = params.orderId;
-  const [color, setColor] = useState("");
-  const [toastIsOpen, setToastIsOpen] = useState(false);
-  const [errorMessage, setErrorMessage] = useState("");
+
   const [deviceModel, setDeviceModel] = useState("");
   const [deviceSerial, setDeviceSerial] = useState("");
   const [deviceImei, setDeviceImei] = useState("");
@@ -63,53 +59,15 @@ export default function OrderInfo({ params }: { params: ParamsType }) {
       setCustomerPhone(order.Customer.phone);
     });
   }, []);
-
-  const handleOrderUpdate = async function (event: FormEvent<HTMLFormElement>) {
-    event.preventDefault();
-
-    const res = await ordersService.postUpdate(orderId, {
-      deviceModel,
-      deviceSerial,
-      deviceImei,
-      serviceDescription,
-      deadline,
-      serviceStatus,
-    });
-
-    if (res === 200) {
-      setToastIsOpen(true);
-      setErrorMessage("Serviço atualizado com sucesso!");
-      setColor("bg-success");
-      setTimeout(() => {
-        setToastIsOpen(false);
-      }, 3000);
-    } else {
-      setToastIsOpen(true);
-      setErrorMessage("Você não pode mudar para esse valor!");
-      setColor("bg-danger");
-      setTimeout(() => {
-        setToastIsOpen(false);
-      }, 3000);
-    }
-  };
-
-  const handlePrint = () => {
-    const url = `http://localhost:3001/print/${orderId}`;
-    const print = window.open(url, "", "width=600, height=600");
-    setTimeout(() => {
-      print!.print();
-    }, 3000);
-  };
   return (
     <>
       <Container>
         <Form
-          onSubmit={handleOrderUpdate}
           id="form"
-          className="border-solid border-1 max-w-full border-azulClaro p-3 pt-0 mt-2 dark:text-white"
+          className="border-solid border-1 max-w-full border-azulClaro p-3 pt-0 mt-2"
         >
           <div className="flex items-center justify-center gap-2 w-[80%] mt-5 mx-auto uppercase">
-            <p className="text-3xl font-bold break-words max-[501px]:text-xl text-center dark:text-white">
+            <p className="text-3xl font-bold break-words max-[501px]:text-xl text-center">
               {`${deviceModel}`}
             </p>
             <p
@@ -153,7 +111,7 @@ export default function OrderInfo({ params }: { params: ParamsType }) {
             </p>
           </div>
           <div className="flex justify-center">
-            <p className="text-sm text-slate-500 text-center dark:text-textPrimario">
+            <p className="text-sm text-slate-500 text-center ">
               Ordem de Serviço aberta em
               <br /> {`${date.getDate()} de ${month} de ${date.getFullYear()}`}
               <br />
@@ -171,7 +129,7 @@ export default function OrderInfo({ params }: { params: ParamsType }) {
                 Modelo
               </Label>
               <Input
-                className="dark:bg-secundario border-0 dark:text-textPrimario"
+                className=" border-0 "
                 name="deviceModel"
                 type="text"
                 id="deviceModel"
@@ -188,7 +146,7 @@ export default function OrderInfo({ params }: { params: ParamsType }) {
                 Serial (opcional)
               </Label>
               <Input
-                className="dark:bg-secundario border-0 dark:text-textPrimario"
+                className=" border-0 "
                 name="deviceSerial"
                 type="text"
                 id="deviceSerial"
@@ -205,7 +163,7 @@ export default function OrderInfo({ params }: { params: ParamsType }) {
                   Imei (opcional)
                 </Label>
                 <Input
-                  className="dark:bg-secundario border-0 dark:text-textPrimario"
+                  className=" border-0 "
                   name="deviceImei"
                   type="tel"
                   id="deviceImei"
@@ -221,7 +179,7 @@ export default function OrderInfo({ params }: { params: ParamsType }) {
                   Descrição do Serviço
                 </Label>
                 <Input
-                  className="dark:bg-secundario border-0 dark:text-textPrimario"
+                  className=" border-0 "
                   name="serviceDescription"
                   type="textarea"
                   id="serviceDescription"
@@ -237,7 +195,7 @@ export default function OrderInfo({ params }: { params: ParamsType }) {
                   Prazo para terminar o serviço
                 </Label>
                 <Input
-                  className="dark:bg-secundario border-0 dark:text-textPrimario"
+                  className=" border-0 "
                   name="deadline"
                   type="date"
                   id="deadline"
@@ -249,29 +207,10 @@ export default function OrderInfo({ params }: { params: ParamsType }) {
                   }}
                 />
               </FormGroup>
-              <div className="flex justify-between  items-center gap-1">
-                <button
-                  type="submit"
-                  className=" max-[370px]:text-sm max-[370px]:w-32 text-white text-center font-bold px-2 py-1 rounded-lg  transition ease-in-out delay-150 bg-azul hover:-translate-y-1 hover:scale-110 hover:bg-azulClaro duration-300"
-                >
-                  Salvar Alterações
-                </button>
-                <button
-                  onClick={handlePrint}
-                  className=" max-[370px]:text-sm max-[370px]:w-32 text-white text-center font-bold px-2 py-1 rounded-lg  transition ease-in-out delay-150 bg-azul hover:-translate-y-1 hover:scale-110 hover:bg-azulClaro duration-300"
-                >
-                  imprimir
-                </button>
-              </div>
             </div>
           </div>
         </Form>
       </Container>
-      <ToastComponent
-        color={color}
-        isOpen={toastIsOpen}
-        message={errorMessage}
-      />
     </>
   );
 }

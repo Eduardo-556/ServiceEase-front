@@ -42,7 +42,7 @@ export default function Home() {
       <div className="flex justify-between ">
         <h1 className="text-center text-5xl font-bold mx-auto text-azulClaro p-3 max-[509px]:text-4xl max-[391px]:text-2xl">
           Welcome to ServiceEase <br />
-          <span className="text-azul dark:text-textPrimario">{` ${firstName} ${lastName}`}</span>
+          <span className="text-azul dark:text-white">{` ${firstName} ${lastName}`}</span>
           !
         </h1>
         <div>

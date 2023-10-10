@@ -41,7 +41,7 @@ export default function CustomerOrders({ customerId }: ParamsType) {
           </p>
         </div>
         <div className="flex justify-center">
-          <p className="text-sm text-slate-500 text-center dark:text-secundario">
+          <p className="text-sm text-slate-500 text-center dark:text-textPrimario">
             Cliente desde <br />
             {`${date.getDate()} de ${month} de ${date.getFullYear()}`}
           </p>
@@ -58,11 +58,11 @@ export default function CustomerOrders({ customerId }: ParamsType) {
                     className="no-underline"
                   >
                     <div className="mt-2 w-full overflow-hidden rounded-md bg-white">
-                      <div className="py-2 px-3 hover:bg-slate-100 dark:bg-primeiroPlano">
-                        <p className="text-sm  text-gray-600 font-bold dark:text-textPrimario">
+                      <div className="py-2 px-3 hover:bg-slate-100 dark:bg-secundario">
+                        <p className="text-sm  text-gray-600 font-bold dark:text-white">
                           {`${order.deviceModel.toUpperCase()}`}
                         </p>
-                        <div className="text-sm text-gray-500 break-words max-[452px]:text-xs dark:text-secundario">
+                        <div className="text-sm text-gray-500 break-words max-[452px]:text-xs dark:text-textPrimario">
                           <span className="font-bold">Status: </span>
                           <span
                             className={`

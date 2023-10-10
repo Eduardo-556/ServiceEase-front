@@ -50,11 +50,11 @@ export default function OrderShowHome() {
                       className="no-underline "
                     >
                       <div className=" mt-2 w-full overflow-hidden rounded-md  ">
-                        <div className="py-2 px-3 hover:bg-slate-100 dark:bg-primeiroPlano">
-                          <p className="text-sm  text-gray-600 font-bold dark:text-textPrimario">
+                        <div className="py-2 px-3 hover:bg-slate-100 dark:bg-secundario">
+                          <p className="text-sm  text-gray-600 font-bold dark:text-white">
                             {`${order.deviceModel.toUpperCase()}`}
                           </p>
-                          <div className="text-sm text-gray-500 break-words max-[452px]:text-xs dark:text-secundario">
+                          <div className="text-sm text-gray-500 break-words max-[452px]:text-xs dark:text-textPrimario">
                             <span className="font-bold">Status: </span>
                             <span
                               className={`
@@ -127,11 +127,11 @@ export default function OrderShowHome() {
                       className="no-underline"
                     >
                       <div className="mt-2 w-full overflow-hidden rounded-md bg-white ">
-                        <div className="py-2 px-3 hover:bg-slate-100 dark:bg-primeiroPlano">
-                          <p className="text-sm  text-gray-600 font-bold dark:text-textPrimario">
+                        <div className="py-2 px-3 hover:bg-slate-100 dark:bg-secundario">
+                          <p className="text-sm  text-gray-600 font-bold dark:text-white">
                             {`${order.deviceModel.toUpperCase()}`}
                           </p>
-                          <div className="text-sm text-gray-500 break-words max-[452px]:text-xs dark:text-secundario">
+                          <div className="text-sm text-gray-500 break-words max-[452px]:text-xs dark:text-textPrimario">
                             <span className="font-bold">Status: </span>
                             <span
                               className={`
@@ -204,11 +204,11 @@ export default function OrderShowHome() {
                       className="no-underline"
                     >
                       <div className="mt-2 w-full overflow-hidden rounded-md bg-white">
-                        <div className="py-2 px-3 hover:bg-slate-100 dark:bg-primeiroPlano">
-                          <p className="text-sm  text-gray-600 font-bold dark:text-textPrimario">
+                        <div className="py-2 px-3 hover:bg-slate-100 dark:bg-secundario">
+                          <p className="text-sm  text-gray-600 font-bold dark:text-white">
                             {`${order.deviceModel.toUpperCase()}`}
                           </p>
-                          <div className="text-sm text-gray-500 break-words max-[452px]:text-xs dark:text-secundario">
+                          <div className="text-sm text-gray-500 break-words max-[452px]:text-xs dark:text-textPrimario">
                             <span className="font-bold">Status: </span>
                             <span
                               className={`

@@ -66,7 +66,7 @@ export default function CustomerInfo({ params }: { params: ParamsType }) {
     <>
       <Form
         onSubmit={handleUserUpdate}
-        className="border-solid border-1 max-w-full border-azulClaro p-5 pt-0 mt-2 dark:text-textPrimario"
+        className="border-solid border-1 max-w-full border-azulClaro p-5 pt-0 mt-2 dark:text-white"
       >
         <div className="flex items-center justify-center gap-2 w-[80%] mt-5 mx-auto uppercase">
           <p className="text-3xl font-bold break-words max-[501px]:text-xl text-center">
@@ -74,7 +74,7 @@ export default function CustomerInfo({ params }: { params: ParamsType }) {
           </p>
         </div>
         <div className="flex justify-center">
-          <p className="text-sm text-slate-500 text-center dark:text-secundario">
+          <p className="text-sm text-slate-500 text-center dark:text-textPrimario">
             Cliente desde <br />
             {`${date.getDate()} de ${month} de ${date.getFullYear()}`}
           </p>
@@ -86,7 +86,7 @@ export default function CustomerInfo({ params }: { params: ParamsType }) {
               Nome
             </Label>
             <Input
-              className="dark:bg-primeiroPlano border-0 dark:text-secundario"
+              className="dark:bg-secundario border-0 dark:text-textPrimario"
               name="firstName"
               type="text"
               id="firstName"
@@ -103,7 +103,7 @@ export default function CustomerInfo({ params }: { params: ParamsType }) {
               Sobrenome
             </Label>
             <Input
-              className="dark:bg-primeiroPlano border-0 dark:text-secundario"
+              className="dark:bg-secundario border-0 dark:text-textPrimario"
               name="lastName"
               type="text"
               id="lastName"
@@ -120,7 +120,7 @@ export default function CustomerInfo({ params }: { params: ParamsType }) {
               Documento de identidade
             </Label>
             <Input
-              className="dark:bg-primeiroPlano border-0 dark:text-secundario"
+              className="dark:bg-secundario border-0 dark:text-textPrimario"
               name="nif"
               type="text"
               id="nif"
@@ -138,7 +138,7 @@ export default function CustomerInfo({ params }: { params: ParamsType }) {
                 Whatsapp / Telegram
               </Label>
               <Input
-                className="dark:bg-primeiroPlano border-0 dark:text-secundario"
+                className="dark:bg-secundario border-0 dark:text-textPrimario"
                 name="phone"
                 type="tel"
                 id="phone"
@@ -154,7 +154,7 @@ export default function CustomerInfo({ params }: { params: ParamsType }) {
                 e-mail
               </Label>
               <Input
-                className="dark:bg-primeiroPlano border-0 dark:text-secundario"
+                className="dark:bg-secundario border-0 dark:text-textPrimario"
                 name="email"
                 type="email"
                 id="email"
@@ -171,7 +171,7 @@ export default function CustomerInfo({ params }: { params: ParamsType }) {
                 Endereço
               </Label>
               <Input
-                className="dark:bg-primeiroPlano border-0 dark:text-secundario"
+                className="dark:bg-secundario border-0 dark:text-textPrimario"
                 name="address"
                 type="text"
                 id="address"

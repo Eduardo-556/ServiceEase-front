@@ -10,7 +10,7 @@ export const metadata: Metadata = {
 export default function layout({ children }: { children: ReactNode }) {
   return (
     <ThemeContextProvider>
-      <main className="flex mx-auto static dark:bg-black">
+      <main className="flex mx-auto static dark:bg-primeiroPlano">
         <div className="h-screen  fixed">
           <Sidebar />
         </div>
