@@ -98,7 +98,7 @@ export default function OrderInfo({ params }: { params: ParamsType }) {
     const print = window.open(url, "", "width=600, height=600");
     setTimeout(() => {
       print!.print();
-    }, 3000);
+    }, 2000);
   };
   return (
     <>
