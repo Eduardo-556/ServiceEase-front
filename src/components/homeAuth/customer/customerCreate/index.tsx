@@ -56,7 +56,7 @@ export default function CreateCustomer() {
       <Container className="py-5">
         <Form
           onSubmit={handleSubmit}
-          className="p-1 py-2 border-solid border-1 max-w-md border-azulClaro my-0 mx-auto text-center"
+          className="p-1 py-2 border-solid border-1 max-w-md border-azulClaro my-0 mx-auto text-center dark:text-white "
         >
           <p className="text-center text-azulClaro break-words">
             <strong>Cadastre um novo cliente!</strong>
@@ -66,6 +66,7 @@ export default function CreateCustomer() {
               Nome
             </Label>
             <Input
+              className="dark:bg-secundario border-0 dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:bg-secundario "
               name="firstName"
               type="text"
               id="firstName"
@@ -78,6 +79,7 @@ export default function CreateCustomer() {
               Sobrenome
             </Label>
             <Input
+              className="dark:bg-secundario border-0 dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:bg-secundario "
               name="lastName"
               type="text"
               id="lastName"
@@ -90,6 +92,7 @@ export default function CreateCustomer() {
               Documento de identidade
             </Label>
             <Input
+              className="dark:bg-secundario border-0 dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:bg-secundario "
               name="nif"
               type="text"
               id="nif"
@@ -103,6 +106,7 @@ export default function CreateCustomer() {
               Whatsapp / Telegram
             </Label>
             <Input
+              className="dark:bg-secundario border-0 dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:bg-secundario "
               name="phone"
               type="tel"
               id="phone"
@@ -114,6 +118,7 @@ export default function CreateCustomer() {
               e-mail
             </Label>
             <Input
+              className="dark:bg-secundario border-0 dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:bg-secundario "
               name="email"
               type="email"
               id="email"
@@ -126,6 +131,7 @@ export default function CreateCustomer() {
               Endereço
             </Label>
             <Input
+              className="dark:bg-secundario border-0 dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:bg-secundario "
               name="address"
               type="text"
               id="address"

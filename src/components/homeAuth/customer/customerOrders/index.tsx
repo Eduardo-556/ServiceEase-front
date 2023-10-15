@@ -36,7 +36,7 @@ export default function CustomerOrders({ customerId }: ParamsType) {
     <>
       <Container className="border-solid border-1 max-w-full border-azulClaro p-5 pt-0 mt-2">
         <div className="flex items-center justify-center gap-2 w-[80%] mt-5 mx-auto uppercase">
-          <p className="text-3xl font-bold break-words max-[501px]:text-xl text-center dark:text-textPrimario">
+          <p className="text-3xl font-bold break-words max-[501px]:text-xl text-center dark:text-white">
             {`${firstName} ${lastName}`}
           </p>
         </div>

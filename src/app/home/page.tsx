@@ -46,11 +46,20 @@ export default function Home() {
           !
         </h1>
         <div>
-          <button onClick={toggleTheme} className="p-2 top-0">
+          <button
+            onClick={toggleTheme}
+            className="m-1 p-2 top-0 rounded-full bg-gray-300 dark:bg-gray-900 hover:bg-gray-400 dark:hover:bg-gray-600 transition-colors flex items-center space-x-2"
+          >
             {theme === "light" ? (
-              <MoonIcon width={30} />
+              <>
+                <MoonIcon width={30} />
+                <span>Dark</span>
+              </>
             ) : (
-              <SunIcon width={30} className="text-yellow-400" />
+              <>
+                <SunIcon width={30} className="text-yellow-400" />
+                <span className="text-textPrimario">Light</span>
+              </>
             )}
           </button>
         </div>

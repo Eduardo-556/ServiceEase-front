@@ -171,7 +171,7 @@ export default function OrderInfo({ params }: { params: ParamsType }) {
                 Modelo
               </Label>
               <Input
-                className="dark:bg-secundario border-0 dark:text-textPrimario"
+                className="dark:bg-secundario border-0 dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:bg-secundario  dark:focus:text-textPrimario"
                 name="deviceModel"
                 type="text"
                 id="deviceModel"
@@ -188,7 +188,7 @@ export default function OrderInfo({ params }: { params: ParamsType }) {
                 Serial (opcional)
               </Label>
               <Input
-                className="dark:bg-secundario border-0 dark:text-textPrimario"
+                className="dark:bg-secundario border-0 dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:bg-secundario  dark:focus:text-textPrimario"
                 name="deviceSerial"
                 type="text"
                 id="deviceSerial"
@@ -205,7 +205,7 @@ export default function OrderInfo({ params }: { params: ParamsType }) {
                   Imei (opcional)
                 </Label>
                 <Input
-                  className="dark:bg-secundario border-0 dark:text-textPrimario"
+                  className="dark:bg-secundario border-0 dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:bg-secundario  dark:focus:text-textPrimario"
                   name="deviceImei"
                   type="tel"
                   id="deviceImei"
@@ -221,7 +221,7 @@ export default function OrderInfo({ params }: { params: ParamsType }) {
                   Descrição do Serviço
                 </Label>
                 <Input
-                  className="dark:bg-secundario border-0 dark:text-textPrimario"
+                  className="dark:bg-secundario border-0 dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:bg-secundario  dark:focus:text-textPrimario"
                   name="serviceDescription"
                   type="textarea"
                   id="serviceDescription"
@@ -237,7 +237,7 @@ export default function OrderInfo({ params }: { params: ParamsType }) {
                   Prazo para terminar o serviço
                 </Label>
                 <Input
-                  className="dark:bg-secundario border-0 dark:text-textPrimario"
+                  className="dark:bg-secundario border-0 dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:bg-secundario  dark:focus:text-textPrimario"
                   name="deadline"
                   type="date"
                   id="deadline"

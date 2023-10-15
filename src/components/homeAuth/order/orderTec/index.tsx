@@ -151,7 +151,7 @@ export default function OrderTec({ params }: { params: ParamsType }) {
           <div>
             <Form
               onSubmit={handleSubmit}
-              className="py-5 flex flex-col justify-center items-center gap-1"
+              className="py-5 flex flex-col justify-center items-center gap-1 dark:text-white"
             >
               <FormGroup>
                 <Label
@@ -161,7 +161,7 @@ export default function OrderTec({ params }: { params: ParamsType }) {
                   Descrição técnica do serviço
                 </Label>
                 <Input
-                  className="h-36 dark:bg-secundario dark:text-textPrimario"
+                  className="h-36 dark:bg-secundario border-0 dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:bg-secundario  dark:focus:text-textPrimario"
                   name="technicalDescription"
                   type="textarea"
                   id="technicalDescription"
@@ -172,14 +172,11 @@ export default function OrderTec({ params }: { params: ParamsType }) {
                 />
               </FormGroup>
               <FormGroup>
-                <Label
-                  for="priceHour"
-                  className="text-sm font-bold dark:text-white"
-                >
+                <Label for="priceHour" className="text-sm font-bold ">
                   Preço por hora de serviço
                 </Label>
                 <Input
-                  className="dark:bg-secundario border-0 dark:text-textPrimario"
+                  className="dark:bg-secundario border-0 dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:bg-secundario  dark:focus:text-textPrimario"
                   name="priceHour"
                   type="text"
                   id="priceHour"
@@ -191,14 +188,11 @@ export default function OrderTec({ params }: { params: ParamsType }) {
                 />
               </FormGroup>
               <FormGroup>
-                <Label
-                  for="spentParts"
-                  className="text-sm font-bold dark:text-white"
-                >
+                <Label for="spentParts" className="text-sm font-bold ">
                   Gasto com peças / equipamentos
                 </Label>
                 <Input
-                  className="dark:bg-secundario border-0 dark:text-textPrimario"
+                  className="dark:bg-secundario border-0 dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:bg-secundario  dark:focus:text-textPrimario"
                   name="spentParts"
                   type="text"
                   id="deviceModel"

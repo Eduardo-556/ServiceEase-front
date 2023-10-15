@@ -32,7 +32,7 @@ export default function Page() {
           </p>
           <Row className="pt-3 pb-5">
             <Col md={4} className="flex flex-col justify-center items-center">
-              <span className=" text-center break-words font-semibold">
+              <span className=" text-center break-words font-semibold dark:text-white">
                 Caso seja um cliente novo,
                 <br />
                 cadastre-o primeiro!

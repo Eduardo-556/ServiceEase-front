@@ -72,7 +72,7 @@ const PasswordForm = function () {
     <>
       <Form
         onSubmit={handlePasswordUpdate}
-        className="border-solid border-1 max-w-full border-azulClaro p-5 pt-0"
+        className="border-solid border-1 max-w-full border-azulClaro p-5 pt-0 dark:text-white"
       >
         <div className="flex flex-col items-center ">
           <FormGroup>
@@ -80,6 +80,7 @@ const PasswordForm = function () {
               Senha Atual
             </Label>
             <Input
+              className="dark:bg-secundario border-0 dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:bg-secundario  dark:focus:text-textPrimario"
               name="currentPassword"
               id="currentPassword"
               type="password"
@@ -98,6 +99,7 @@ const PasswordForm = function () {
               Nova Senha
             </Label>
             <Input
+              className="dark:bg-secundario border-0 dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:bg-secundario  dark:focus:text-textPrimario"
               name="newPassword"
               id="newPassword"
               type="password"
@@ -114,6 +116,7 @@ const PasswordForm = function () {
               Confirme a Nova Senha
             </Label>
             <Input
+              className="dark:bg-secundario border-0 dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:bg-secundario  dark:focus:text-textPrimario"
               name="confirmPassword"
               id="confirmPassword"
               type="password"

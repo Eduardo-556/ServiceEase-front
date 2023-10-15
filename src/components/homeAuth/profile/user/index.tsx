@@ -58,15 +58,15 @@ const UserForm = function () {
     <>
       <Form
         onSubmit={handleUserUpdate}
-        className="border-solid border-1 max-w-full border-azulClaro p-5 pt-0"
+        className="border-solid border-1 max-w-full border-azulClaro p-5 pt-0 dark:text-white"
       >
         <div className="flex items-center justify-center gap-2 w-[80%] mt-5 mx-auto uppercase">
-          <p className="text-3xl font-bold break-words max-[501px]:text-xl text-center">
+          <p className="text-3xl font-bold break-words max-[501px]:text-xl text-center ">
             {`${firstName} ${lastName}`}
           </p>
         </div>
         <div className="flex justify-center">
-          <p className="text-sm text-slate-500 text-center">
+          <p className="text-sm text-slate-500 text-center dark:text-textPrimario">
             Membro desde <br />{" "}
             {`${date.getDate()} de ${month} de ${date.getFullYear()}`}
           </p>
@@ -78,6 +78,7 @@ const UserForm = function () {
               Nome
             </Label>
             <Input
+              className="dark:bg-secundario border-0 dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:bg-secundario  dark:focus:text-textPrimario"
               name="firstName"
               type="text"
               id="firstName"
@@ -94,6 +95,7 @@ const UserForm = function () {
               Sobrenome
             </Label>
             <Input
+              className="dark:bg-secundario border-0 dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:bg-secundario  dark:focus:text-textPrimario"
               name="lastName"
               type="text"
               id="lastName"
@@ -111,6 +113,7 @@ const UserForm = function () {
                 Whatsapp / Telegram
               </Label>
               <Input
+                className="dark:bg-secundario border-0 dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:bg-secundario  dark:focus:text-textPrimario"
                 name="phone"
                 type="tel"
                 id="phone"
@@ -126,6 +129,7 @@ const UserForm = function () {
                 e-mail
               </Label>
               <Input
+                className="dark:bg-secundario border-0 dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:bg-secundario  dark:focus:text-textPrimario"
                 name="email"
                 type="email"
                 id="email"

@@ -6,9 +6,11 @@ import { useRouter } from "next/navigation";
 import { useEffect, useState } from "react";
 import { Col, Container, Row } from "reactstrap";
 import Cookies from "js-cookie";
+import SpinnerLoading from "@/components/common/spinnerLoading";
 export default function Page() {
   const [form, setForm] = useState("userForm");
   const router = useRouter();
+  const [isLoaded, setIsLoaded] = useState(false);
 
   useEffect(() => {
     if (!Cookies.get("serviceEase-token")) {
@@ -17,7 +19,11 @@ export default function Page() {
     } else {
       localStorage.removeItem("paginaAnterior");
     }
+    setIsLoaded(true);
   }, []);
+  if (!isLoaded) {
+    return <SpinnerLoading />;
+  }
 
   const handleLogout = () => {
     Cookies.remove("serviceEase-token");

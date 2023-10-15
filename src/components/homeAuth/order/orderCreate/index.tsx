@@ -6,7 +6,7 @@ import ordersService from "@/services/ordersService";
 import { useRouter } from "next/navigation";
 
 import { FormEvent, useEffect, useState } from "react";
-import Select from "react-select";
+
 import { Container, Form, FormGroup, Input, Label } from "reactstrap";
 
 export default function CreateOrderForm() {
@@ -14,7 +14,7 @@ export default function CreateOrderForm() {
   const [toastIsOpen, setToastIsOpen] = useState(false);
   const [toastMessage, setToastMessage] = useState("");
   const [color, setColor] = useState("");
-  const [customers, setCustomers] = useState([]);
+  const [customers, setCustomers] = useState<CustomerType[]>([]);
 
   useEffect(() => {
     customerService.getAll().then((res) => {
@@ -67,7 +67,7 @@ export default function CreateOrderForm() {
         <Container className="py-5">
           <Form
             onSubmit={handleSubmit}
-            className="p-1 py-2 border-solid border-1 max-w-md border-azulClaro my-0 mx-auto text-center"
+            className="p-1 py-2 border-solid border-1 max-w-md border-azulClaro my-0 mx-auto text-center dark:text-white"
           >
             <p className="text-center text-azulClaro break-words">
               <strong>Cadastre uma nova ordem de serviço!</strong>
@@ -77,6 +77,7 @@ export default function CreateOrderForm() {
                 Modelo
               </Label>
               <Input
+                className="dark:bg-secundario border-0 dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:bg-secundario "
                 name="deviceModel"
                 type="text"
                 id="deviceModel"
@@ -89,6 +90,7 @@ export default function CreateOrderForm() {
                 Serial (opcional)
               </Label>
               <Input
+                className="dark:bg-secundario border-0 dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:bg-secundario "
                 name="deviceSerial"
                 type="text"
                 id="deviceSerial"
@@ -101,6 +103,7 @@ export default function CreateOrderForm() {
                 Imei (opcional)
               </Label>
               <Input
+                className="dark:bg-secundario border-0 dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:bg-secundario "
                 name="deviceImei"
                 type="tel"
                 id="deviceImei"
@@ -112,6 +115,7 @@ export default function CreateOrderForm() {
                 Descrição do Serviço
               </Label>
               <Input
+                className="dark:bg-secundario border-0 dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:bg-secundario "
                 name="serviceDescription"
                 type="textarea"
                 id="serviceDescription"
@@ -123,6 +127,7 @@ export default function CreateOrderForm() {
                 Prazo para terminar o serviço
               </Label>
               <Input
+                className="dark:bg-secundario border-0 dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:bg-secundario  dark:focus:text-textPrimario"
                 name="deadline"
                 type="date"
                 id="deadline"
@@ -134,16 +139,20 @@ export default function CreateOrderForm() {
               <Label for="customerId" className="text-sm font-bold">
                 Cliente
               </Label>
-              <Select
+              <Input
+                type="select"
+                className="dark:bg-secundario border-0 dark:text-textPrimario dark:placeholder-text-textPrimario dark:focus:bg-secundario"
                 id="customerId"
                 name="customerId"
-                options={customers.map((customer: CustomerType) => ({
-                  value: customer.id,
-                  label: `${customer.firstName} ${customer.lastName} (Documento: ${customer.nif})`,
-                }))}
-                isSearchable={true}
                 required
-              />
+              >
+                <option value="">Selecione uma opção</option>
+                {customers.map((customer) => (
+                  <option key={customer.id} value={customer.id}>
+                    {`${customer.firstName} ${customer.lastName} (Documento: ${customer.nif})`}
+                  </option>
+                ))}
+              </Input>
             </FormGroup>
             <button
               type="submit"

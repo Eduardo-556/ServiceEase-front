@@ -125,8 +125,10 @@ export default function Page({ params }: { params: ParamsType }) {
             <Col md>
               {isConfirmationModalOpen && (
                 <div className="fixed inset-0 flex items-center justify-center z-50">
-                  <div className=" bg-white p-4 rounded  shadow-md dark:bg-secundario">
-                    <p>Tem certeza de que deseja excluir este cliente?</p>
+                  <div className="  p-4 rounded  shadow-md bg-azul">
+                    <p className="text-white font-bold p-1">
+                      Tem certeza de que deseja excluir este cliente?
+                    </p>
                     <div className="grid grid-cols-2 gap-1">
                       <button
                         onClick={handleDeleteCustomer}
