@@ -122,11 +122,11 @@ export default function OrderTec({ params }: { params: ParamsType }) {
     <>
       <Container>
         <div className="border-solid border-1 max-w-full border-azulClaro p-3 pt-0 mt-2">
-          <h1 className="text-3xl font-bold break-words max-[501px]:text-xl text-center p-2 dark:text-textPrimario">
+          <h1 className="text-3xl font-bold break-words max-[501px]:text-xl text-center p-2 dark:text-white">
             Área do Técnico
           </h1>
           <div className="flex flex-col justify-center items-center gap-2 p-2 border-solid border-1 border-azulClaro rounded-full dark:bg-primeiroPlano">
-            <div className="text-4xl font-bold dark:text-textPrimario">
+            <div className="text-4xl font-bold dark:text-white">
               {formatSecondsToTime(seconds)}
             </div>
             <div className="flex justify-center items-center gap-1 max-[478px]:flex-col ">
@@ -156,12 +156,12 @@ export default function OrderTec({ params }: { params: ParamsType }) {
               <FormGroup>
                 <Label
                   for="technicalDescription"
-                  className="text-sm font-bold dark:text-textPrimario"
+                  className="text-sm font-bold dark:text-white"
                 >
                   Descrição técnica do serviço
                 </Label>
                 <Input
-                  className="h-36 dark:bg-primeiroPlano dark:text-secundario"
+                  className="h-36 dark:bg-secundario dark:text-textPrimario"
                   name="technicalDescription"
                   type="textarea"
                   id="technicalDescription"
@@ -174,12 +174,12 @@ export default function OrderTec({ params }: { params: ParamsType }) {
               <FormGroup>
                 <Label
                   for="priceHour"
-                  className="text-sm font-bold dark:text-textPrimario"
+                  className="text-sm font-bold dark:text-white"
                 >
                   Preço por hora de serviço
                 </Label>
                 <Input
-                  className="dark:bg-primeiroPlano border-0 dark:text-secundario"
+                  className="dark:bg-secundario border-0 dark:text-textPrimario"
                   name="priceHour"
                   type="text"
                   id="priceHour"
@@ -193,12 +193,12 @@ export default function OrderTec({ params }: { params: ParamsType }) {
               <FormGroup>
                 <Label
                   for="spentParts"
-                  className="text-sm font-bold dark:text-textPrimario"
+                  className="text-sm font-bold dark:text-white"
                 >
                   Gasto com peças / equipamentos
                 </Label>
                 <Input
-                  className="dark:bg-primeiroPlano border-0 dark:text-secundario"
+                  className="dark:bg-secundario border-0 dark:text-textPrimario"
                   name="spentParts"
                   type="text"
                   id="deviceModel"
@@ -209,8 +209,10 @@ export default function OrderTec({ params }: { params: ParamsType }) {
                 />
               </FormGroup>
               <div className="flex flex-col  justify-center items-center ">
-                <span className="font-extrabold">Preço Total do Serviço</span>
-                <div className=" flex justify-center items-center border-solid border-1 bg-slate-50 border-azulClaro m-1 p-1 rounded-lg dark:bg-primeiroPlano  dark:text-textPrimario">
+                <span className="font-extrabold dark:text-white">
+                  Preço Total do Serviço
+                </span>
+                <div className=" flex justify-center items-center border-solid border-1 bg-slate-50 border-azulClaro m-1 p-1 rounded-lg dark:bg-primeiroPlano  dark:text-white">
                   <p className=" text-center font-semibold text-green-500 ml-1">
                     $
                   </p>
