@@ -108,7 +108,6 @@ export default function OrderTec({ params }: { params: ParamsType }) {
       setTimeout(() => {
         setToastIsOpen(false);
       }, 3000);
-      router.push("/home/servicos");
     } else {
       setToastIsOpen(true);
       setErrorMessage("Erro ao finalizar serviço, verifique as informações!");
@@ -118,6 +117,15 @@ export default function OrderTec({ params }: { params: ParamsType }) {
       }, 3000);
     }
   };
+
+  const handlePrint = () => {
+    const url = `/printNote/${orderId}`;
+    const print = window.open(url, "", "width=600, height=600");
+    setTimeout(() => {
+      print!.print();
+    }, 2000);
+  };
+
   return (
     <>
       <Container>
@@ -215,11 +223,19 @@ export default function OrderTec({ params }: { params: ParamsType }) {
                   </p>
                 </div>
               </div>
+
+              <div className="flex justify-between  items-center gap-1"></div>
               <button
                 type="submit"
                 className=" max-[370px]:text-sm max-[370px]:w-32 text-white text-center font-bold px-2 py-1 rounded-lg  transition ease-in-out delay-150 bg-azul hover:-translate-y-1 hover:scale-110 hover:bg-azulClaro duration-300"
               >
                 Finalizar Serviço
+              </button>
+              <button
+                onClick={handlePrint}
+                className=" max-[370px]:text-sm max-[370px]:w-32 text-white text-center font-bold px-2 py-1 rounded-lg  transition ease-in-out delay-150 bg-azul hover:-translate-y-1 hover:scale-110 hover:bg-azulClaro duration-300"
+              >
+                imprimir
               </button>
             </Form>
           </div>

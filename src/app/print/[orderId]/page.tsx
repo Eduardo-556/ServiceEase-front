@@ -1,8 +1,6 @@
 "use client";
 import QRCode from "qrcode.react";
 import { ParamsType } from "../../home/servicos/[orderId]/page";
-import { Container, FormGroup, Input, Label } from "reactstrap";
-import { Form } from "reactstrap";
 import { useEffect, useState } from "react";
 import ordersService from "@/services/ordersService";
 import SpinnerLoading from "@/components/common/spinnerLoading";

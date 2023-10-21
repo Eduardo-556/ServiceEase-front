@@ -94,7 +94,7 @@ export default function OrderInfo({ params }: { params: ParamsType }) {
   };
 
   const handlePrint = () => {
-    const url = `http://localhost:3001/print/${orderId}`;
+    const url = `/print/${orderId}`;
     const print = window.open(url, "", "width=600, height=600");
     setTimeout(() => {
       print!.print();
@@ -164,7 +164,7 @@ export default function OrderInfo({ params }: { params: ParamsType }) {
           <hr />
           <div className="flex flex-col items-center ">
             <div>
-              <QRCode value={url} />
+              <QRCode value={url} className="border-4" />
             </div>
             <FormGroup>
               <Label for="deviceModel" className="text-sm font-bold">

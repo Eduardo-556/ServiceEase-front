@@ -7,20 +7,13 @@ import { ParamsType } from "../../home/servicos/[orderId]/page";
 
 export default function Print({ params }: { params: ParamsType }) {
   const orderId = params.orderId;
-
   const [deviceModel, setDeviceModel] = useState("");
   const [deviceSerial, setDeviceSerial] = useState("");
   const [deviceImei, setDeviceImei] = useState("");
   const [serviceDescription, setServiceDescription] = useState("");
   const [deadline, setDeadline] = useState(new Date());
   const [createdAt, setCreatedAt] = useState(new Date());
-  const [serviceStatus, setServiceStatus] = useState("");
-  const [startTime, setStartTime] = useState(new Date());
-  const [pauseTime, setPauseTime] = useState(new Date());
-  const [endTime, setEndTime] = useState(new Date());
-  const [totalTime, setTotalTime] = useState(new Date());
   const [totalCost, setTotalCost] = useState(0);
-  const [customerId, setCustomerId] = useState("");
   const [customerFirstName, setCustomerFirstName] = useState("");
   const [customerLastName, setCustomerLastName] = useState("");
   const [customerEmail, setCustomerEmail] = useState("");
@@ -38,14 +31,9 @@ export default function Print({ params }: { params: ParamsType }) {
       setServiceDescription(order.serviceDescription);
       setDeadline(order.deadline);
       setCreatedAt(order.createdAt);
-      setServiceStatus(order.serviceStatus);
-      setStartTime(order.startTime);
-      setPauseTime(order.pauseTime);
-      setEndTime(order.endTime);
-      setTotalTime(order.totalTime);
-      setTotalTime(order.totalTime);
+
       setTotalCost(order.totalCost);
-      setCustomerId(order.customerId);
+
       setCustomerFirstName(order.Customer.firstName);
       setCustomerLastName(order.Customer.lastName);
       setCustomerEmail(order.Customer.email);
