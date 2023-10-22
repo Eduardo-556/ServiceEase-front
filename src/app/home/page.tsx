@@ -39,30 +39,30 @@ export default function Home() {
 
   return (
     <>
+      <div className="flex justify-end">
+        <button
+          onClick={toggleTheme}
+          className="m-1 p-2 top-0 rounded-full bg-gray-300 dark:bg-gray-900 hover:bg-gray-400 dark:hover:bg-gray-600 transition-colors flex items-center space-x-2"
+        >
+          {theme === "light" ? (
+            <>
+              <MoonIcon width={30} />
+              <span>Dark</span>
+            </>
+          ) : (
+            <>
+              <SunIcon width={30} className="text-yellow-400" />
+              <span className="text-textPrimario">Light</span>
+            </>
+          )}
+        </button>
+      </div>
       <div className="flex justify-between ">
         <h1 className="text-center text-5xl font-bold mx-auto text-azulClaro p-3 max-[509px]:text-4xl max-[391px]:text-2xl">
           Welcome to ServiceEase <br />
           <span className="text-azul dark:text-white">{` ${firstName} ${lastName}`}</span>
           !
         </h1>
-        <div>
-          <button
-            onClick={toggleTheme}
-            className="m-1 p-2 top-0 rounded-full bg-gray-300 dark:bg-gray-900 hover:bg-gray-400 dark:hover:bg-gray-600 transition-colors flex items-center space-x-2"
-          >
-            {theme === "light" ? (
-              <>
-                <MoonIcon width={30} />
-                <span>Dark</span>
-              </>
-            ) : (
-              <>
-                <SunIcon width={30} className="text-yellow-400" />
-                <span className="text-textPrimario">Light</span>
-              </>
-            )}
-          </button>
-        </div>
       </div>
       <div className="flex justify-center items-center max-[420px]:flex-col">
         <Link
