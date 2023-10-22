@@ -64,7 +64,7 @@ export default function Home() {
           </button>
         </div>
       </div>
-      <div className="flex justify-center items-center max-[391px]:flex-col">
+      <div className="flex justify-center items-center max-[420px]:flex-col">
         <Link
           href="/home/servicos/cadastro"
           className="no-underline  text-white text-center font-bold my-3 mx-2 py-2 px-2 rounded-lg  transition ease-in-out delay-150 bg-azul hover:-translate-y-1 hover:scale-110 hover:bg-azulClaro duration-300"
