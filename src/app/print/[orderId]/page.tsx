@@ -26,7 +26,7 @@ export default function Print({ params }: { params: ParamsType }) {
   useEffect(() => {
     // Lembrar de trocar para window.location.href
     //const currentUrl = `http://192.168.0.104:3001/home/servicos/${orderId}`;
-    const currentUrl = `/home/servicos/${orderId}`;
+    const currentUrl = `https://serviceease.vercel.app/home/servicos/${orderId}`;
     setUrl(currentUrl);
   }, []);
 
