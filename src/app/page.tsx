@@ -3,7 +3,7 @@ import { PresentationSection } from "@/components/homeNoAuth/presentationSection
 
 export default function HomeNotAuth() {
   return (
-    <main className="dark:bg-black">
+    <main className="dark:bg-primeiroPlano">
       <HeaderNoAuth />
       <PresentationSection />
     </main>

@@ -19,7 +19,7 @@ const config: Config = {
         vermelho: "#c32e58",
         branco: "#eeeeee",
         azulClaro: "#0dcaf0",
-        primeiroPlano: "#0f0f0f",
+        primeiroPlano: "#18181b",
         secundario: "#272727",
         textPrimario: "#919191",
       },

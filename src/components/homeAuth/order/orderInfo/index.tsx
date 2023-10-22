@@ -249,7 +249,7 @@ export default function OrderInfo({ params }: { params: ParamsType }) {
                   }}
                 />
               </FormGroup>
-              <div className="flex justify-between  items-center gap-1">
+              <div className="flex justify-between  items-center gap-1 max-[394px]:flex-col">
                 <button
                   type="submit"
                   className=" max-[370px]:text-sm max-[370px]:w-32 text-white text-center font-bold px-2 py-1 rounded-lg  transition ease-in-out delay-150 bg-azul hover:-translate-y-1 hover:scale-110 hover:bg-azulClaro duration-300"

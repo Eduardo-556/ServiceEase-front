@@ -8,7 +8,7 @@ import Link from "next/link";
 export const HeaderNoAuth = function () {
   return (
     <>
-      <div className={styles.ctaSection}>
+      <div className={`${styles.ctaSection}`}>
         <p className="text-branco">
           Se cadastre e comece a usar nossos serviços!!!
         </p>
@@ -22,12 +22,12 @@ export const HeaderNoAuth = function () {
         />
         <div>
           <Link href="/login">
-            <Button className={styles.navBtn} outline>
+            <Button className={`${styles.navBtn} dark:bg-azulClaro`} outline>
               Entrar
             </Button>
           </Link>
           <Link href="/register">
-            <Button className={styles.navBtn} outline>
+            <Button className={`${styles.navBtn} dark:bg-azulClaro`} outline>
               Cadastro
             </Button>
           </Link>
