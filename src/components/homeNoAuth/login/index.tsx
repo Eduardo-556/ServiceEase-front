@@ -1,6 +1,6 @@
 "use client";
 
-import { Button, Container, Form, FormGroup, Input, Label } from "reactstrap";
+import { Button, Form, FormGroup, Input, Label } from "reactstrap";
 import styles from "../register/styles.module.scss";
 import { useRouter, useSearchParams } from "next/navigation";
 import { FormEvent, useEffect, useState } from "react";
@@ -57,14 +57,14 @@ export default function LoginBody() {
   };
 
   return (
-    <>
-      <Container className="py-5">
+    <div className="dark:bg-primeiroPlano ">
+      <div className="py-5 dark:bg-primeiroPlano">
         <p className="text-3xl font-bold mb-10 text-center text-azulClaro max-sm:text-2xl">
           Bem-vindo(a) ao ServiceEase!
         </p>
         <Form
           onSubmit={handleLogin}
-          className="w-96 p-12 border-solid border-1 border-azulClaro my-0 mx-auto max-sm:w-11/12"
+          className="w-96 p-12 border-solid border-1 border-azulClaro my-0 mx-auto max-sm:w-11/12 dark:text-white"
         >
           <p className="text-center text-azulClaro">
             <strong>Bem-vindo(a) ao ServiceEase!</strong>
@@ -79,7 +79,7 @@ export default function LoginBody() {
               type="email"
               placeholder="Qual seu email?"
               required
-              className={styles.input}
+              className={`${styles.input}  dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:text-textPrimario dark:focus:bg-secundario `}
             />
           </FormGroup>
           <FormGroup>
@@ -92,19 +92,19 @@ export default function LoginBody() {
               type="password"
               placeholder="Qual sua senha?"
               required
-              className={styles.input}
+              className={`${styles.input}  dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:text-textPrimario dark:focus:bg-secundario `}
             />
           </FormGroup>
           <Button type="submit" outline className={styles.formBtn}>
             ENTRAR
           </Button>
         </Form>
-      </Container>
+      </div>
       <ToastComponent
         color={toastColor}
         isOpen={toastIsOpen}
         message={toastMessage}
       />
-    </>
+    </div>
   );
 }

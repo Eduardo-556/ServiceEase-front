@@ -7,6 +7,7 @@ import authService from "@/services/authService";
 import { useRouter } from "next/navigation";
 import ToastComponent from "@/components/common/toast";
 import Cookies from "js-cookie";
+
 export default function RegisterBody() {
   const router = useRouter();
   const [toastIsOpen, setToastIsOpen] = useState(false);
@@ -61,19 +62,19 @@ export default function RegisterBody() {
   };
   return (
     <>
-      <Container className="py-5">
+      <div className="py-5 dark:bg-primeiroPlano">
         <p className="text-3xl font-bold mb-10 text-center text-azulClaro max-sm:text-2xl">
           Bem-vindo(a) ao ServiceEase!
         </p>
         <Form
           onSubmit={handleRegister}
-          className="w-96 p-12 border-solid border-1 border-azulClaro my-0 mx-auto max-sm:w-11/12"
+          className="w-96 p-12 border-solid border-1 border-azulClaro my-0 mx-auto max-sm:w-11/12 dark:text-white"
         >
           <p className="text-center text-azulClaro">
             <strong>Bem-vindo(a) ao ServiceEase!</strong>
           </p>
           <FormGroup>
-            <Label for="firstName" className="text-sm font-bold pt-2">
+            <Label for="firstName" className="text-sm font-bold pt-2 ">
               Nome
             </Label>
             <Input
@@ -83,7 +84,7 @@ export default function RegisterBody() {
               placeholder="Qual o seu nome?"
               required
               maxLength={20}
-              className={styles.input}
+              className={`${styles.input}  dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:text-textPrimario dark:focus:bg-secundario `}
             />
           </FormGroup>
           <FormGroup>
@@ -97,7 +98,7 @@ export default function RegisterBody() {
               placeholder="Qual o seu sobrenome?"
               required
               maxLength={20}
-              className={styles.input}
+              className={`${styles.input} dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:text-textPrimario dark:focus:bg-secundario `}
             />
           </FormGroup>
           <FormGroup>
@@ -110,7 +111,7 @@ export default function RegisterBody() {
               type="text"
               placeholder=" +55 (xx) xxxxx-xxxx"
               required
-              className={styles.input}
+              className={`${styles.input} dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:text-textPrimario dark:focus:bg-secundario `}
             />
           </FormGroup>
           <FormGroup>
@@ -123,7 +124,7 @@ export default function RegisterBody() {
               type="email"
               placeholder="Qual o seu e-mail?"
               required
-              className={styles.input}
+              className={`${styles.input} dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:text-textPrimario dark:focus:bg-secundario `}
             />
           </FormGroup>
           <FormGroup>
@@ -136,7 +137,7 @@ export default function RegisterBody() {
               type="date"
               min="1930-01-01"
               max="2020-12-31"
-              className={styles.input}
+              className={`${styles.input} dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:text-textPrimario dark:focus:bg-secundario `}
             />
           </FormGroup>
           <FormGroup>
@@ -151,7 +152,7 @@ export default function RegisterBody() {
               required
               minLength={6}
               maxLength={20}
-              className={styles.input}
+              className={`${styles.input} dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:text-textPrimario dark:focus:bg-secundario `}
             />
           </FormGroup>
           <FormGroup>
@@ -166,7 +167,7 @@ export default function RegisterBody() {
               required
               minLength={6}
               maxLength={20}
-              className={styles.input}
+              className={`${styles.input} dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:text-textPrimario dark:focus:bg-secundario `}
             />
           </FormGroup>
           <FormGroup>
@@ -178,7 +179,7 @@ export default function RegisterBody() {
               name="language"
               type="select"
               required
-              className={styles.inputLanguage}
+              className={`${styles.inputLanguage} dark:text-textPrimario dark:placeholder:text-textPrimario dark:focus:text-textPrimario dark:focus:bg-secundario`}
             >
               <option value="pt-BR">Português</option>
               <option value="en-US">English</option>
@@ -188,7 +189,7 @@ export default function RegisterBody() {
             Cadastrar
           </Button>
         </Form>
-      </Container>
+      </div>
       <ToastComponent
         color="bg-danger"
         isOpen={toastIsOpen}

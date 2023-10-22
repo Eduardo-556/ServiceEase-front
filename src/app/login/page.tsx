@@ -9,7 +9,7 @@ export const metadata: Metadata = {
 export default function Login() {
   return (
     <>
-      <main className="bg-gradient-to-b from-branco to-gray-300">
+      <main className=" dark:bg-primeiroPlano">
         <HeaderGeneric
           logoUrl="/"
           btnUrl="/register"

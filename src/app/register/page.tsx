@@ -8,14 +8,14 @@ export const metadata: Metadata = {
 export default function Register() {
   return (
     <>
-      <main className="bg-gradient-to-b from-branco to-gray-300">
+      <div className="bg-gradient-to-b from-branco to-gray-300 dark:bg-primeiroPlano">
         <HeaderGeneric
           logoUrl="/"
           btnUrl="/login"
           btnContent="Quero fazer login"
         />
         <RegisterBody />
-      </main>
+      </div>
     </>
   );
 }
