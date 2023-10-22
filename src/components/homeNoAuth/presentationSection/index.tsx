@@ -36,18 +36,17 @@ export const PresentationSection = function () {
           </Col>
         </Row>
         <Row>
-          <div className="flex justify-center items-center py-5">
+          <div className="flex justify-center items-center py-5 max-[713px]:flex-col">
             <h1 className="text-center text-info font-bold text-4xl">
               Gerencie suas Ordens de Serviço de forma simples e eficiente!
             </h1>
             <Image
               src="https://i.imgur.com/6G0f2y9.png"
-              width={500}
+              width={600}
               height={500}
               alt="banner"
-              className="w-auto h-auto"
               quality={100}
-              sizes="(max-width: 768px) 100vw"
+              className="w-auto h-auto"
             />
           </div>
         </Row>
@@ -56,43 +55,47 @@ export const PresentationSection = function () {
             <h1 className="text-center text-info font-bold text-4xl py-2">
               Informações facilitadas para o técnico e o cliente
             </h1>
-            <div className="flex justify-center gap-4">
+            <div className="flex justify-center gap-4 max-[865px]:flex-col">
               <Image
                 src="https://i.imgur.com/fXnXK3R.png"
-                width={500}
-                height={500}
+                width={400}
+                height={0}
                 alt="banner"
                 quality={100}
+                className="w-auto h-auto"
               />
               <Image
                 src="https://i.imgur.com/SB25UGg.png"
-                width={500}
-                height={500}
+                width={400}
+                height={0}
                 alt="banner"
                 quality={100}
+                className="w-auto h-auto"
               />
             </div>
           </div>
         </Row>
         <Row>
-          <div className="flex-col justify-center items-center py-5">
+          <div className="flex-col justify-center items-center py-5 ">
             <h1 className="text-center text-info font-bold text-4xl py-2">
               Tenha as Informações na sua mão!
             </h1>
-            <div className="flex justify-center gap-4">
+            <div className="flex justify-center gap-4 max-[465px]:flex-col">
               <Image
                 src="https://i.imgur.com/i3V1Rhp.png"
                 width={290}
-                height={400}
+                height={0}
                 alt="banner"
                 quality={100}
+                className="w-auto h-auto"
               />
               <Image
                 src="https://i.imgur.com/3BeJRhL.png"
                 width={290}
-                height={400}
+                height={0}
                 alt="banner"
                 quality={100}
+                className="w-auto h-auto"
               />
             </div>
           </div>
