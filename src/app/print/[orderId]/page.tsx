@@ -14,13 +14,6 @@ export default function Print({ params }: { params: ParamsType }) {
   const [serviceDescription, setServiceDescription] = useState("");
   const [deadline, setDeadline] = useState(new Date());
   const [createdAt, setCreatedAt] = useState(new Date());
-  const [serviceStatus, setServiceStatus] = useState("");
-  const [startTime, setStartTime] = useState(new Date());
-  const [pauseTime, setPauseTime] = useState(new Date());
-  const [endTime, setEndTime] = useState(new Date());
-  const [totalTime, setTotalTime] = useState(new Date());
-  const [totalCost, setTotalCost] = useState("");
-  const [customerId, setCustomerId] = useState("");
   const [customerFirstName, setCustomerFirstName] = useState("");
   const [customerLastName, setCustomerLastName] = useState("");
   const [customerEmail, setCustomerEmail] = useState("");
@@ -33,7 +26,7 @@ export default function Print({ params }: { params: ParamsType }) {
   useEffect(() => {
     // Lembrar de trocar para window.location.href
     //const currentUrl = `http://192.168.0.104:3001/home/servicos/${orderId}`;
-    const currentUrl = `http://localhost:3001/home/servicos/${orderId}`;
+    const currentUrl = `/home/servicos/${orderId}`;
     setUrl(currentUrl);
   }, []);
 
@@ -45,14 +38,6 @@ export default function Print({ params }: { params: ParamsType }) {
       setServiceDescription(order.serviceDescription);
       setDeadline(order.deadline);
       setCreatedAt(order.createdAt);
-      setServiceStatus(order.serviceStatus);
-      setStartTime(order.startTime);
-      setPauseTime(order.pauseTime);
-      setEndTime(order.endTime);
-      setTotalTime(order.totalTime);
-      setTotalTime(order.totalTime);
-      setTotalCost(order.totalCost);
-      setCustomerId(order.customerId);
       setCustomerFirstName(order.Customer.firstName);
       setCustomerLastName(order.Customer.lastName);
       setCustomerEmail(order.Customer.email);
@@ -99,6 +84,9 @@ export default function Print({ params }: { params: ParamsType }) {
           </h5>
         </div>
         <div id="qrCode">
+          <p className="text-[10px] text-center">
+            Use o Leitor de QRCode da Home
+          </p>
           <QRCode value={url} />
         </div>
       </div>

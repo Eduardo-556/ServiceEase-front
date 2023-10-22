@@ -37,7 +37,7 @@ export default function OrderInfo({ params }: { params: ParamsType }) {
   useEffect(() => {
     // Lembrar de trocar para window.location.href
     //const currentUrl = `http://192.168.0.104:3001/home/servicos/${orderId}`;
-    const currentUrl = `http://localhost:3001/home/servicos/${orderId}`;
+    const currentUrl = window.location.href;
     setUrl(currentUrl);
   }, []);
 
