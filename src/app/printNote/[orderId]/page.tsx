@@ -80,7 +80,7 @@ export default function Print({ params }: { params: ParamsType }) {
           </h5>
           <h5>
             <strong>Valor Total: </strong>
-            R$ {totalCost ? totalCost : 0}
+            R$ {totalCost ? totalCost.toFixed(2) : 0.0}
           </h5>
         </div>
       </div>

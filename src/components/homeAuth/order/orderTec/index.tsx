@@ -80,7 +80,9 @@ export default function OrderTec({ params }: { params: ParamsType }) {
     const fractionHours = minutes / 60;
     const totalHours = hours + fractionHours;
     const hoursCost = totalHours * (priceHours ? priceHours : 0);
-    const totalCost = hoursCost + (priceParts ? priceParts : 0);
+    const totalCostFloat = hoursCost + (priceParts ? priceParts : 0);
+    const totalCost = parseInt(totalCostFloat.toFixed(0));
+
     setTotalCost(totalCost);
   }, [priceHours, priceParts, seconds]);
 
@@ -95,12 +97,14 @@ export default function OrderTec({ params }: { params: ParamsType }) {
     const fractionHours = minutes / 60;
     const totalHours = hours + fractionHours;
     const hoursCost = totalHours * priceHour;
-    const totalCost = hoursCost + spentParts;
+    const totalCostFloat = hoursCost + spentParts;
+    const totalCost = parseInt(totalCostFloat.toFixed(0));
 
     const res = await ordersService.postUpdate(orderId, {
       totalCost: totalCost,
       serviceStatus: "ended",
     });
+
     if (res === 200) {
       setToastIsOpen(true);
       setErrorMessage("Serviço finalizado com sucesso!");

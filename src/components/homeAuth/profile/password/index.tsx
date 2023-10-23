@@ -24,10 +24,6 @@ const PasswordForm = function () {
   ) {
     event.preventDefault();
 
-    console.log(password);
-    console.log(newPassword);
-    console.log(confirmPassword);
-
     if (newPassword !== confirmPassword) {
       setToastIsopen(true);
       setErrorMessage("Senha e confirmação de senha não coincidem");
