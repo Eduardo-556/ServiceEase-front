@@ -178,7 +178,7 @@ export default function OrderTec({ params }: { params: ParamsType }) {
                   type="textarea"
                   id="technicalDescription"
                   placeholder="Descreva o serviço, trabalhos realizado, peças trocadas, aguardando peça, ...."
-                  inputMode="numeric"
+                  inputMode="text"
                   value={technicalDescription}
                   onChange={(e) => setTechnicalDescription(e.target.value)}
                 />
@@ -233,11 +233,17 @@ export default function OrderTec({ params }: { params: ParamsType }) {
                 type="submit"
                 className=" max-[370px]:text-sm max-[370px]:w-32 text-white text-center font-bold px-2 py-1 rounded-lg  transition ease-in-out delay-150 bg-azul hover:-translate-y-1 hover:scale-110 hover:bg-azulClaro duration-300"
               >
-                Finalizar Serviço
+                Salvar Alterações
               </button>
               <p className="text-sm text-center font-bold dark:text-white">
                 Finalize o serviço antes de imprimir a nota.
               </p>
+              <button
+                type="submit"
+                className=" max-[370px]:text-sm max-[370px]:w-32 text-white text-center font-bold px-2 py-1 rounded-lg  transition ease-in-out delay-150 bg-azul hover:-translate-y-1 hover:scale-110 hover:bg-azulClaro duration-300"
+              >
+                Finalizar Serviço
+              </button>
               <button
                 onClick={handlePrint}
                 className=" max-[370px]:text-sm max-[370px]:w-32 text-white text-center font-bold px-2 py-1 rounded-lg  transition ease-in-out delay-150 bg-azul hover:-translate-y-1 hover:scale-110 hover:bg-azulClaro duration-300"
