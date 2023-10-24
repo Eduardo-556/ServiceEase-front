@@ -53,7 +53,7 @@ export default function Page() {
               <input
                 name="search"
                 type="search"
-                className="flex py-2 px-3 focus:outline-none bg-slate-50 dark:bg-secundario"
+                className="flex py-2 px-3 focus:outline-none bg-slate-50 dark:bg-secundario dark:text-slate-50"
                 placeholder="Pesquisar..."
                 value={searchName}
                 onChange={(event) => {
