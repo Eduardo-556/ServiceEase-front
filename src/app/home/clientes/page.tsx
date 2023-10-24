@@ -49,23 +49,23 @@ export default function Page() {
       <div className="flex min-h-screen justify-center overflow-hidden mt-4">
         <div className="flex flex-col items-center w-full  max-[452px]:w-60">
           <form onSubmit={handleSearch}>
-            <div className="flex justify-between overflow-hidden rounded-md  bg-white shadow shadow-black/20 max-[452px]:w-64 dark:bg-secundario">
+            <div className="flex justify-between overflow-hidden rounded-md  shadow shadow-black/20  max-[468px]:w-64 dark:bg-secundario">
               <input
                 name="search"
                 type="search"
-                className="flex py-2 px-3 focus:outline-none dark:bg-secundario border-0"
+                className="flex py-2 px-3 focus:outline-none bg-slate-50 dark:bg-secundario"
                 placeholder="Pesquisar..."
                 value={searchName}
                 onChange={(event) => {
                   setSearchName(event.currentTarget.value.toLowerCase());
                 }}
               />
-              <div className="dark:bg-secundario">
+              <div className="dark:bg-secundario  bg-slate-50 relative right-0">
                 <span
                   onClick={handleSearchClick}
-                  className="m-1 inline-flex cursor-pointer items-center rounded-md bg-azul px-2 py-2 hover:bg-azulClaro "
+                  className="m-1 inline-flex cursor-pointer items-center rounded-md  px-2 py-2 hover:bg-azul "
                 >
-                  <MagnifyingGlassIcon className="w-4 h-4 text-white" />
+                  <MagnifyingGlassIcon className=" h-6 text-azulClaro" />
                 </span>
               </div>
             </div>
